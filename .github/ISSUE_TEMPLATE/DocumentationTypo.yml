@@ -1,6 +1,6 @@
 name: Typo Report
 description: "File a typo report in the documentation"
-title: "Typo Report [2023/XX/XX]"
+title: "Typo Report [2025/XX/XX]"
 labels: ["documentation", "invalid"]
 body:
   - type: textarea
