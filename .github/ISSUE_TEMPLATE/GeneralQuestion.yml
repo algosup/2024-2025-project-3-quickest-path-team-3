@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         ## Question
-        Have a question? Use this template to get answers from the maintainers or community.
+        Use this template to describe your question or ask for clarification.
 
   - type: input
     id: title
@@ -14,11 +14,10 @@ body:
       label: Title
       description: Provide a concise title for your question.
       placeholder: e.g., "How do I deploy the project?"
-      required: true
 
   - type: textarea
     id: details
     attributes:
       label: Details
-      description: Describe your question in detail.
-      placeholder: e.g., "I'm not sure how to configure the project for deployment. Are there any guides?"
+      description: Describe your question in detail, including any context that might help others understand it.
+      placeholder: e.g., "I'm not sure how to configure the project for deployment. Are there any guides or resources?"
