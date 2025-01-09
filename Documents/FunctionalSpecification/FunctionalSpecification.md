@@ -1,22 +1,22 @@
-# Functional specifications template
+# Functional specifications
 
 ## Table of Contents
 
 <details>
 <summary> Click to expand </summary>
 
-- [Functional specifications template](#functional-specifications-template)
+- [Functional specifications](#functional-specifications)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
-    - [Product description](#product-description)
-    - [Product functional capabilities](#product-functional-capabilities)
+    - [Product Description](#product-description)
+    - [Product Functional capabilities](#product-functional-capabilities)
     - [User Roles](#user-roles)
-    - [Use Cases for all operations](#use-cases-for-all-operations)
+    - [Use Cases for All Operations](#use-cases-for-all-operations)
       - [Use Case 1: Compute the shortest path](#use-case-1-compute-the-shortest-path)
-      - [Use Case 2: Insert an invalid input ID](#use-case-2-insert-an-invalid-input-id)
-    - [General constraints](#general-constraints)
+      - [Use Case 2: Handle invalid input IDs](#use-case-2-handle-invalid-input-ids)
+    - [General Constraints](#general-constraints)
     - [Assumptions](#assumptions)
-    - [Other software](#other-software)
+    - [Related Software](#related-software)
   - [Specific Function Descriptions](#specific-function-descriptions)
     - [Description](#description)
     - [Inputs](#inputs)
@@ -44,7 +44,7 @@
 
 ## Overview
 
-### Product description
+### Product Description
 
 This software solution is a high-performance **REST API[^1]**, developed in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intended to handle a dataset with approximately 24 million nodes, ensuring results are within 1 second of the response time for an average laptop.
 
@@ -55,7 +55,7 @@ The key features of the solution include:
 - Support for the user-selectable response formats in **XML[^3]** and **JSON[^4]**
 - Error handling by standard REST API practices
 
-### Product functional capabilities
+### Product Functional capabilities
 
 The primary functions of the software are:
 
@@ -75,7 +75,7 @@ The API user will interact with the software through HTTP requests, and will be 
 - Interpreting the API's response
 - Handling any errors that may occur during the process
 
-### Use Cases for all operations
+### Use Cases for All Operations
 
 #### Use Case 1: Compute the shortest path
 
@@ -88,7 +88,7 @@ The API user will interact with the software through HTTP requests, and will be 
   2. The server processes the request and computes the quickest path.
   3. The server returns the result, including the travel time and ordered list of landmarks.
 
-#### Use Case 2: Insert an invalid input ID
+#### Use Case 2: Handle invalid input IDs
 
 - **Primary Actor**: API User
 - **Description**: The user provides an invalid ID as input. The system returns an error message.
@@ -98,7 +98,7 @@ The API user will interact with the software through HTTP requests, and will be 
   1. The user sends an HTTP request to the API with an invalid ID.
   2. The server processes the request and returns an error message.
 
-### General constraints
+### General Constraints
 
 - The software must be able to handle a dataset with approximately 24 million nodes, as it represents the number of landmarks in the United States of America.
 - The software must be able to return results within 1 second of the response time for an average laptop.
@@ -113,7 +113,7 @@ Here's the list of assumptions made for this project:
 2. The users will interact with the system only using standard REST API clients.
 3. The performance benchmarks are based on an average laptop, similar to those provided by the school.
 
-### Other software
+### Related Software
 
 The REST API will be developed in C++ and will be using a minimal web server framework to handle the HTTP requests. The API will be able to handle both XML and JSON response formats.
 The REST API will operate independently and will not directly interface with other software systems, except for common API testing tools (e.g., Postman, cURL).
