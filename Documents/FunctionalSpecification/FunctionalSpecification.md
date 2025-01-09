@@ -46,7 +46,7 @@
 
 ### Product description
 
-This software solution is a high-performance **REST API[^1]**, developped in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intented to handle a dataset with approximately 24 million nodes, ensuring resuls are within 1 second of response time for an average laptop.
+This software solution is a high-performance **REST API[^1]**, developed in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intended to handle a dataset with approximately 24 million nodes, ensuring results are within 1 second of the response time for an average laptop.
 
 The key features of the solution include:
 
@@ -59,15 +59,15 @@ The key features of the solution include:
 
 The primary functions of the software are:
 
-1. **Pathfinding**: We must be able to find the quickest path between two landmarks based on a provided dataset (a csv file of american landmarks in this case).
-2. **Data validation**: A separate utility will verify the integrity of the provided dataset, ensuring graph connectivity and absence of loops.
+1. **Pathfinding**: We must be able to find the quickest path between two landmarks based on a provided dataset (a CSV file of American landmarks in this case).
+2. **Data validation**: A separate utility will verify the integrity of the provided dataset, ensuring graph connectivity and the absence of loops.
 3. **Response format selection**: The system supports user-selectable response formats, offering both XML and JSON outputs.
 4. **Error handling**: The API will return appropriate status codes and error messages based on standard REST API error handling practices.
 5. **Performance**: Ensure response times of under 1 second for an average laptop.
 
 ### User Roles
 
-Our current vision is for a single user role, the API user.
+Our current vision is for a single-user role, the API user.
 
 The API user will interact with the software through HTTP requests, and will be responsible for:
 
@@ -80,7 +80,7 @@ The API user will interact with the software through HTTP requests, and will be 
 #### Use Case 1: Compute the shortest path
 
 - **Primary Actor**: API User
-- **Description**: The user provides the ID of the starting and ending landmarks. The system calculates the quickest path and return the result in the user-selected format.
+- **Description**: The user provides the ID of the starting and ending landmarks. The system calculates the quickest path and returns the result in the user-selected format.
 - **Preconditions**: The USA roads' dataset must be loaded and the local server must be running.
 - **Postconditions**: The system returns the quickest path between the two landmarks in **XML** or **JSON** format.
 - **Normal Flow**:
@@ -100,8 +100,8 @@ The API user will interact with the software through HTTP requests, and will be 
 
 ### General constraints
 
-- The software must be able to handle a dataset with approximately 24 million nodes, as it represent the number of landmarks in the United States of America.
-- The software must be able to return results within 1 second of response time for an average laptop.
+- The software must be able to handle a dataset with approximately 24 million nodes, as it represents the number of landmarks in the United States of America.
+- The software must be able to return results within 1 second of the response time for an average laptop.
 - For this project, only standard libraries (such as STL) and a minimal web server framework should be used for the implementation.
 - We don't need a Graphical User Interface (GUI), interaction will be done through HTTP requests with the API.
 
@@ -111,7 +111,7 @@ Here's the list of assumptions made for this project:
 
 1. The dataset is provided in a **CSV[^6]** file format, ensuring a code stability.
 2. The users will interact with the system only using standard REST API clients.
-3. The performance benchmarks are based on an average laptop, similarly to those provided by the school.
+3. The performance benchmarks are based on an average laptop, similar to those provided by the school.
 
 ### Other software
 
@@ -122,7 +122,7 @@ The REST API will operate independently and will not directly interface with oth
 
 ### Description
 
-The functions are simply hypothetical examples and should be replaced with the actual functions that will be implemented.
+The functions are hypothetical examples and should be replaced with the actual functions that will be implemented.
 
 ```cpp
 // Function to compute the shortest path between two landmarks
@@ -178,12 +178,12 @@ The system will output the following:
    2. **Node path**: The ordered list of landmarks to reach the destination.
       Example:
 
-   ```json
-   {
-     "travel_time": 120,
-     "node_path": [1, 5, 7, 10]
-   }
-   ```
+      ```json
+      {
+        "travel_time": 120,
+        "node_path": [1, 5, 7, 10]
+      }
+      ```
 
 2. **Error Response**:
 
@@ -191,12 +191,12 @@ The system will output the following:
    2. **Error message**: The error message corresponding to the error code.
       Example:
 
-   ```json
-   {
-     "error_code": 400,
-     "error_message": "Invalid ID provided"
-   }
-   ```
+```json
+{
+  "error_code": 400,
+  "error_message": "Invalid ID provided"
+}
+```
 
 ## External Interfaces
 
@@ -220,7 +220,7 @@ The software is designed to run on typical laptops with specifications similar t
 
 ### Performance
 
-- The system is expected to return results within 1 second of response time for an average laptop.
+- The system is expected to return results within 1 second of the response time for an average laptop.
 - Performance benchmarks will be based on the specifications provided by the school.
 - It should support datasets with up to 24 million nodes without significant performance degradation.
 
