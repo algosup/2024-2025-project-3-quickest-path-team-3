@@ -82,9 +82,9 @@ The API user will interact with the software through HTTP requests, and will be 
 - **Primary Actor**: API User
 - **Description**: The user provides the ID of the starting and ending landmarks. The system calculates the quickest path and return the result in the user-selected format.
 - **Preconditions**: The USA roads' dataset must be loaded and the local server must be running.
-- **Postconditions**: The system returns the quickest path between the two landmarks in \***\*XML** or **JSON** format.
+- **Postconditions**: The system returns the quickest path between the two landmarks in **XML** or **JSON** format.
 - **Normal Flow**:
-  1. The user sends an HTTP request to the API with the source and destination IDs.
+  1. The user sends an **HTTP[^5]** request to the API with the source and destination IDs.
   2. The server processes the request and computes the quickest path.
   3. The server returns the result, including the travel time and ordered list of landmarks.
 
@@ -100,105 +100,196 @@ The API user will interact with the software through HTTP requests, and will be 
 
 ### General constraints
 
-The software must be able to handle a dataset with approximately 24 million nodes, as it represent the number of landmarks in the United States of America.
-The software must be able to return results within 1 second of response time for an average laptop.
-For this project, only standard libraries (STL) and
+- The software must be able to handle a dataset with approximately 24 million nodes, as it represent the number of landmarks in the United States of America.
+- The software must be able to return results within 1 second of response time for an average laptop.
+- For this project, only standard libraries (such as STL) and a minimal web server framework should be used for the implementation.
+- We don't need a Graphical User Interface (GUI), interaction will be done through HTTP requests with the API.
 
 ### Assumptions
 
-<!-- List any assumptions that were made in specifying the functional requirements. -->
+Here's the list of assumptions made for this project:
+
+1. The dataset is provided in a **CSV[^6]** file format, ensuring a code stability.
+2. The users will interact with the system only using standard REST API clients.
+3. The performance benchmarks are based on an average laptop, similarly to those provided by the school.
 
 ### Other software
 
-<!-- How does the program interact with other software, such as spreadsheets, word processing or presentation software? For example, can a user cut and paste from the application to other Windows software programs? Does the program import/export data to other software? Does the program use any communication, integration, or protocols to exchange data with other software? -->
+The REST API will be developed in C++ and will be using a minimal web server framework to handle the HTTP requests. The API will be able to handle both XML and JSON response formats.
+The REST API will operate independently and will not directly interface with other software systems, except for common API testing tools (e.g., Postman, cURL).
 
 ## Specific Function Descriptions
 
-<!-- This section is repeated for each function of the software. Some examples of functions are: engineering calculations, sorting or sequencing, other operations relating inputs to outputs, validity checks on inputs, error handling and recovery. -->
-
 ### Description
 
-<!-- Describe the function and its role in the software. -->
+The functions are simply hypothetical examples and should be replaced with the actual functions that will be implemented.
+
+```cpp
+// Function to compute the shortest path between two landmarks
+std::string computeShortestPath(int sourceID, int destinationID);
+
+// Function to validate the dataset
+bool validateDataset(std::string datasetPath);
+
+// Function to select the response format
+std::string selectResponseFormat(std::string format);
+
+// Function to handle errors
+std::string handleError(int errorCode);
+
+// Function to ensure response times
+bool checkResponseTime(double responseTime);
+
+// Function to load the dataset
+bool loadDataset(std::string datasetPath);
+
+// Function to handle HTTP requests
+std::string handleRequest(std::string request);
+```
 
 ### Inputs
 
-<!-- Describe the inputs to the function. Where user interface (UI) elements are present, these are described. Examples of UI elements are check boxes, dropdown lists, and alphanumeric fields. Input validation strategy, allowed data types and value ranges are specified for each input. -->
+Here's the list of input the user will provide to the system:
+
+- **Source ID**: The ID of the starting landmark.
+- **Destination ID**: The ID of the ending landmark.
+- **Dataset Path**: The path to the dataset file, probably defined by default to avoid user wrong input
+- **Format**: XML or JSON, the format in which the user wants the response.
+- **Error Code**: The error code returned by the system.
+- **Response Time**: The response time of the system.
+- **Request**: The HTTP request sent by the user.
 
 ### Processing
 
-<!-- Describe what is done by the function. Where algorithms, equations, or other logic are used, they are described here. If calculations are done utilizing the methods of specific standards or references, these are cited. Database definitions are also included where relevant. -->
+The system will process the inputs as follows:
+
+1. **Request checking:** The system will check the validity of the HTTP request, if the request is valid (i.e., contains the required parameters), it will proceed to the next step.
+2. **Pathfinding:** The system will compute the shortest path between the source and destination landmarks based on the provided dataset.
+3. **Formatting:** The system will format the result in the user-selected format (XML or JSON).
+4. **Result:** The system will return the result to the user.
 
 ### Outputs
 
-<!-- Describe the outputs of the function. Where a user interface description is relevant, it is included. Define any reports. -->
+The system will output the following:
+
+1. **Successful Response**:
+
+   1. **Travel time**: The sum of the travel times between the landmarks.
+   2. **Node path**: The ordered list of landmarks to reach the destination.
+      Example:
+
+   ```json
+   {
+     "travel_time": 120,
+     "node_path": [1, 5, 7, 10]
+   }
+   ```
+
+2. **Error Response**:
+
+   1. **Error code**: The error code returned by the system.
+   2. **Error message**: The error message corresponding to the error code.
+      Example:
+
+   ```json
+   {
+     "error_code": 400,
+     "error_message": "Invalid ID provided"
+   }
+   ```
 
 ## External Interfaces
 
-<!-- The interfaces in this section are specified by documenting: the name and description of each item, source or input, destination or output, ranges, accuracy and tolerances, units of measure, timing, display formats and organization, and data formats. -->
-
 ### User Interfaces
 
-<!-- Describe all major screens, pages, forms, including any complex dialog boxes. This is usually best done via simulated, non-functioning screen shots, and may take the form of a separate document.
-
-The navigation flow of the windows, menus, and options is described, along with the expected content of each window. Examples of items included are screen resolutions, color scheme, primary font type and size. Discussion also includes how input validation will be done, and how data will be protected from accidental changes. Specific items are described for each screen such as input fields, control buttons, sizing options, and menus. -->
+There is no graphical user interface (GUI). Users will interact with the system through HTTP requests via command-line tools or API clients.
 
 ### Hardware Interfaces
 
-<!-- Describe the equipment needed to run the software, and also other output or input devices such as printers or handheld devices. -->
+The software is designed to run on typical laptops with specifications similar to those provided by the school.
 
 ### Software Interfaces
 
-<!-- Describe any software that will be required in order for the product to operate fully. Include any in-house software or commercial applications that customers will be utilizing together with the planned software. Also describes any software that the software product will interact with such as operating system platforms supported, file import and export, networking, automation, or scripting. Specify whether the users must provide the interfacing software themselves, and any special licensing requirements. -->
+- The system will expose a REST API endpoint for computing the shortest path.
+- Common API testing tools (e.g., Postman, cURL) can be used to interact with the API.
 
 ### Communication Interfaces
 
-<!-- Describes how the software product will communicate with itself (for multi-platform applications) or other software applications, including items such as networking, email, intranet, and Internet communications. -->
+- Communication with the system will only be done through HTTP requests.
+- The API will support requests on `localhost` during and after development.
 
 ### Performance
 
-<!-- Discuss items such as response times, throughput requirements, data volume requirements, maximum data file size or problem complexity, maximum number of concurrent uses, and peak load requirements (for web-based applications). Includes expected response times for entering information, querying data files and databases, performing calculations of various complexities, and importing/exporting data. -->
+- The system is expected to return results within 1 second of response time for an average laptop.
+- Performance benchmarks will be based on the specifications provided by the school.
+- It should support datasets with up to 24 million nodes without significant performance degradation.
 
 ### Design Constraints
 
-<!-- Examples of constraints that affect software design choices are items such as memory constraints involving minimum and maximum RAM and hard disk space, and limitations arising from hardware, software or communications standards. -->
+1. The software must be implemented in C++.
+2. Only standard libraries (such as STL) and minimal frameworks required for the REST API are permitted.
+3. No standard libraries or frameworks that are not part of the standard C++ library are allowed to be used.
 
 ## Attributes
 
 ### Security
 
-<!-- Describe any password-protected access levels such as operator, engineer/modeler, manager, database administrator-and which functionality will be accessible to each access level. If relevant, describes the planned approach to locking the software. -->
+Regarding security, the following measures will be taken:
+
+- The system will not store any user data.
+- The system will not have any user authentication or authorization mechanisms.
+- The system will not have any user sessions or cookies.
+- The system will not have any user input validation beyond the basic input validation required for the API to function correctly.
+- The system will not have any user data encryption or decryption mechanisms.
+- The system will not have any user data storage mechanisms.
+- The system will not have any user data transmission encryption mechanisms.
 
 ### Reliability, Availability, Maintainability
 
-<!-- Describe requirements items such as days or weeks of continuous operation, strategy for data recovery, code structuring for ease of future modification. -->
+- The system will be designed to be reliable by ensuring that it can handle a large dataset and return results within 1 second of response time.
+- The system will be designed to be available by ensuring that it can handle multiple requests concurrently.
+- The system will be designed to be maintainable by using standard C++ libraries and minimal frameworks, making it easier to maintain and update in the future.
 
 ### Configurability and Compatibility
 
-<!-- Describe requirements such as those connected with individual customization or operation in specific computing environments. -->
+- The system will support user-selectable response formats (XML and JSON).
 
 ### Installability
 
-<!-- Describe the planned method for installation: done by the user independently, done by customer company internal IT services, done by an external contractor. Specifies the handling of such items as data transfer from prior releases, and the presence of software elements from prior releases. -->
+- The system will be installed on the user's local machine.
+- Clear installation instructions will be provided to the user by the user manual to ensure a smooth installation process.
 
 ### Usability
 
-<!-- Describe items that will ensure the user-friendliness of the software. Examples include error messages that direct the user to a solution, input range checking as soon as entries are made, and order of choices and screens corresponding to user preferences. -->
+- The API should handle invalid inputs gracefully and avoid crashes.
 
 ## Additional Requirements
 
 ### User documentation
 
-<!-- Describe the user documentation to be delivered with the software, including both hard copy and online requirements. -->
+The user documentation will include:
+
+- Installation instructions
+- API usage instructions
+- Error handling instructions
+- Response format selection instructions
+- Simple examples of API usage
+- QnA section
 
 ### Other requirements
 
-<!-- Describe any other requirements not already covered above that need to be considered during the design of the software. -->
+To ensure the success of the project, the solution should include a testing suite that covers:
+
+- Unit tests for individual functions
+- Integration tests for the API endpoints
+- Performance tests to ensure response times are within the specified limits
+- Error handling tests to verify that the system handles invalid inputs correctly
 
 ### Glossary
-
-<!-- Define any terms that are specific to this document. -->
 
 [^1]: REST API - Representational State Transfer Application Programming Interface [Source](https://en.wikipedia.org/wiki/Representational_state_transfer)
 [^2]: C++ - A general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes". [Source](https://en.wikipedia.org/wiki/C%2B%2B)
 [^3]: XML - Extensible Markup Language [Source](https://en.wikipedia.org/wiki/XML)
 [^4]: JSON - JavaScript Object Notation [Source](https://en.wikipedia.org/wiki/JSON)
+[^5]: HTTP - Hypertext Transfer Protocol [Source](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+[^6]: CSV - Comma-Separated Values [Source](https://en.wikipedia.org/wiki/Comma-separated_values)
