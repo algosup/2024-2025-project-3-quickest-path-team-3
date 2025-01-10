@@ -31,6 +31,7 @@
         - [6.3.1 **Issue Templates**](#631-issue-templates)
         - [6.3.2 **Pull-Request Templates**](#632-pull-request-templates)
         - [6.3.3 **Labels**](#633-labels)
+      - [6.4 **Bug Database**](#64-bug-database)
   - [7. **Test Schedule**](#7-test-schedule)
   - [8. **Resources**](#8-resources)
     - [8.1 **Test Tools**](#81-test-tools)
@@ -205,6 +206,10 @@ Here are the screenshots of the pull-request template used in the project:
 ##### 6.3.3 **Labels**
 
 We chose to use labels to categorize issues and pull requests in the project. You can the labels used in the project [here](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/labels).
+
+#### 6.4 **Bug Database**
+
+You will be able to find the all the bugs in Github's issue tab. You will also be able to see it in a google sheet [here](https://docs.google.com/spreadsheets/d/1y3rJFKFBt53vgucQnEiByPjIO2DgxmkgcAVdG9xDjgM/edit?usp=sharing).
 
 ---
 
