@@ -38,7 +38,10 @@
   - [Additional Requirements](#additional-requirements)
     - [User documentation](#user-documentation)
     - [Other requirements](#other-requirements)
-    - [Glossary](#glossary)
+  - [Development and Deployment](#development-and-deployment)
+    - [Development Environment](#development-environment)
+    - [Deployment Environment](#deployment-environment)
+  - [Glossary](#glossary)
 
 </details>
 
@@ -46,7 +49,7 @@
 
 ### Product Description
 
-This software solution is a high-performance **REST API[^1]**, developed in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intended to handle a dataset with approximately 24 million nodes, ensuring results are within 1 second of the response time for an average laptop.
+This software solution is a high-performance **REST API[^1]**, developed in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intended to handle a dataset with approximately 24 million nodes[^7], ensuring results are within 1 second of the response time for an average laptop.
 
 The key features of the solution include:
 
@@ -60,9 +63,18 @@ The key features of the solution include:
 The primary functions of the software are:
 
 1. **Pathfinding**: We must be able to find the quickest path between two landmarks based on a provided dataset (a CSV file of American landmarks in this case).
-2. **Data validation**: A separate utility will verify the integrity of the provided dataset, ensuring graph connectivity and the absence of loops.
+2. **Data validation**: A separate utility will verify the integrity of the provided dataset, ensuring graph[^8] connectivity and the absence of loops.
 3. **Response format selection**: The system supports user-selectable response formats, offering both XML and JSON outputs.
 4. **Error handling**: The API will return appropriate status codes and error messages based on standard REST API error handling practices.
+   Here a table of the error codes and their corresponding messages:
+
+   | Error Code | Error Message         | Example Scenario                |
+   | ---------- | --------------------- | ------------------------------- |
+   | 400        | Invalid ID provided   | Invalid source landmark ID      |
+   | 404        | Landmark not found    | Landmark ID not in dataset      |
+   | 500        | Internal server error | Dataset not loaded or corrupted |
+   | 503        | Service unavailable   | Too many requests               |
+
 5. **Performance**: Ensure response times of under 1 second for an average laptop.
 
 ### User Roles
@@ -285,7 +297,27 @@ To ensure the success of the project, the solution should include a testing suit
 - Performance tests to ensure response times are within the specified limits
 - Error handling tests to verify that the system handles invalid inputs correctly
 
-### Glossary
+## Development and Deployment
+
+### Development Environment
+
+The recommended development environment includes:
+
+- **C++ compiler:** GCC 10+ or Clang 11+
+- **Web server framework:** Crowcpp or Restbed
+- **IDE:** Visual Studio Code or CLion
+- **Testing framework:** Github Actions
+
+### Deployment Environment
+
+The deployment environment includes:
+
+1. Clone the repository and build the project using the provided CMake configuration.
+2. Configure the web server to run the API on port 8080.
+3. Ensure the dataset is loaded at the specified path during startup.
+4. Use a reverse proxy like Nginx for production deployments to handle HTTPS.
+
+## Glossary
 
 [^1]: REST API - Representational State Transfer Application Programming Interface [Source](https://en.wikipedia.org/wiki/Representational_state_transfer)
 [^2]: C++ - A general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes". [Source](https://en.wikipedia.org/wiki/C%2B%2B)
@@ -293,3 +325,5 @@ To ensure the success of the project, the solution should include a testing suit
 [^4]: JSON - JavaScript Object Notation [Source](https://en.wikipedia.org/wiki/JSON)
 [^5]: HTTP - Hypertext Transfer Protocol [Source](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
 [^6]: CSV - Comma-Separated Values [Source](https://en.wikipedia.org/wiki/Comma-separated_values)
+[^7]: Node - A Node, often referred to as a Vertex, is a fundamental unit of a graph. It represents an entity within the graph. In our case, a node represents a landmark in the United States of America. [Source](https://www.geeksforgeeks.org/graph-terminology-in-data-structure/)
+[^8]: Graph - A graph is a data structure that consists of a finite set of nodes (vertices) and a set of edges that connect the nodes. In our case, the nodes represent landmarks, and the edges represent the roads connecting the landmarks. [Source](https://www.geeksforgeeks.org/graph-terminology-in-data-structure/)
