@@ -38,7 +38,9 @@
   - [9. **Risks and Mitigations**](#9-risks-and-mitigations)
     - [9.1 **Performance Risk**](#91-performance-risk)
     - [9.2 **Data Integrity Risk**](#92-data-integrity-risk)
-  - [10. **Approval**](#10-approval)
+  - [10. **Glossary**](#10-glossary)
+  - [| **Version Control**          | A system that tracks changes to code over time, allowing multiple people to work on the same project without overwriting each other's work. Git is a popular version control system. |](#-version-control-----------a-system-that-tracks-changes-to-code-over-time-allowing-multiple-people-to-work-on-the-same-project-without-overwriting-each-others-work-git-is-a-popular-version-control-system-)
+  - [11. **Approval**](#11-approval)
 
 </details>
 
@@ -257,7 +259,27 @@ We chose to use labels to categorize issues and pull requests in the project. Yo
 
 ---
 
-## 10. **Approval**
+## 10. **Glossary**
+
+| **Term**                     | **Definition**                                                                                                                                                                  |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **API (Application Programming Interface)** | A set of rules and protocols that allow different software applications to communicate with each other. In this project, the API is used to expose the pathfinding functionality. |
+| **REST (Representational State Transfer)** | An architectural style for designing networked applications, using stateless communication (HTTP requests) to retrieve and manipulate data.                                      |
+| **DAG (Directed Acyclic Graph)** | A type of graph where edges have a direction and there are no cycles (i.e., no paths that start and end at the same vertex). Used in this project to represent the road network.     |
+| **Heuristic**                | A problem-solving technique used to find an approximate solution when finding the exact solution is computationally expensive. In this project, heuristics are used to improve performance. |
+| **Load Testing**             | A type of performance testing that evaluates how the system performs under a high load (e.g., many concurrent users or large datasets).                                             |
+| **Big O Notation**           | A mathematical notation used to describe the efficiency of algorithms in terms of time or space complexity. For example, O(n) represents linear time complexity.                     |
+| **CSV (Comma-Separated Values)** | A file format used to store tabular data where each value is separated by commas. In this project, it contains the road network data.                                              |
+| **Pathfinding Algorithm**    | An algorithm designed to find the shortest or most efficient path between two points (landmarks) in a graph.                                                                       |
+| **Stress Test**              | A type of testing that checks the system's behavior under extreme conditions or a high volume of data to ensure it can handle the stress without failing.                           |
+| **Pull Request (PR)**        | A method of submitting contributions to a project. After a developer makes changes, a pull request is created to review and merge the changes into the main codebase.                |
+| **Unit Testing**             | A type of testing where individual components or functions of the software are tested in isolation to ensure they work as expected.                                               |
+| **Test Case**                | A set of conditions or variables used to determine whether a software application functions as expected.                                                                       |
+| **Edge Case**                | A test case that deals with extreme or unusual inputs to verify the system's behavior under these conditions.                                                                   |
+| **Version Control**          | A system that tracks changes to code over time, allowing multiple people to work on the same project without overwriting each other's work. Git is a popular version control system. |
+---
+
+## 11. **Approval**
 
 | Name                            | Role              | Date       | Signature |
 | ------------------------------- | ----------------- | ---------- | --------- |
