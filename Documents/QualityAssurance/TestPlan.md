@@ -29,6 +29,8 @@
       - [6.2.4 **Edge Case Testing**](#624-edge-case-testing)
       - [6.3 **Templates and Labels**](#63-templates-and-labels)
         - [6.3.1 **Issue Templates**](#631-issue-templates)
+        - [6.3.2 **Pull-Request Templates**](#632-pull-request-templates)
+        - [6.3.3 **Labels**](#633-labels)
   - [7. **Test Schedule**](#7-test-schedule)
   - [8. **Resources**](#8-resources)
     - [8.1 **Test Tools**](#81-test-tools)
@@ -191,6 +193,16 @@ Here are the screenshots of the issue templates used in the project:
 - **General Question Template**:
     ![General Question Template](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/blob/document/Documents/QualityAssurance/Images/GeneralQuestion.png)
 
+##### 6.3.2 **Pull-Request Templates**
+
+Here are the screenshots of the pull-request template used in the project:
+
+- **Pull Request Template**:
+![Pull Request Template](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/blob/document/Documents/QualityAssurance/Images/PullRequestTemplate.png)
+
+##### 6.3.3 **Labels**
+
+We chose to use labels to categorize issues and pull requests in the project. You can the labels used in the project [here](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/labels).
 
 ---
 
