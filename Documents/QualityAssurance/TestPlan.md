@@ -181,7 +181,16 @@ The scope of this test plan includes the testing of the software solution’s RE
 Here are the screenshots of the issue templates used in the project:
 
 - **Bug Report Template**:
-    ![Bug Report Template](https://i.imgur.com/1Z2Z2Q4.png)
+    ![Bug Report Template](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/blob/document/Documents/QualityAssurance/Images/BugReportIssue.png)
+
+- **Typo Report Template**:
+ ![Typo Report Template](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/blob/document/Documents/QualityAssurance/Images/TypoReportIssue.png)
+- **Feature Request Template**:
+    ![Feature Request Template](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/blob/document/Documents/QualityAssurance/Images/FeatureRequest.png)
+
+- **General Question Template**:
+    ![General Question Template](https://github.com/algosup/2024-2025-project-3-quickest-path-team-3/blob/document/Documents/QualityAssurance/Images/GeneralQuestion.png)
+
 
 ---
 
