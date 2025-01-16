@@ -9,7 +9,7 @@
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
     - [Product Description](#product-description)
-    - [Product Functional capabilities](#product-functional-capabilities)
+    - [Product Functional Capabilities](#product-functional-capabilities)
     - [User Roles](#user-roles)
     - [Use Cases for All Operations](#use-cases-for-all-operations)
       - [Use Case 1: Compute the shortest path](#use-case-1-compute-the-shortest-path)
@@ -20,6 +20,9 @@
   - [Specific Function Descriptions](#specific-function-descriptions)
     - [Description](#description)
     - [Inputs](#inputs)
+      - [1. HTTP Request](#1-http-request)
+      - [2. Example Request](#2-example-request)
+      - [3. Input Rules](#3-input-rules)
     - [Processing](#processing)
     - [Outputs](#outputs)
   - [External Interfaces](#external-interfaces)
@@ -58,7 +61,7 @@ The key features of the solution include:
 - Support for the user-selectable response formats in **XML[^3]** and **JSON[^4]**
 - Error handling by standard REST API practices
 
-### Product Functional capabilities
+### Product Functional Capabilities
 
 The primary functions of the software are:
 
@@ -66,7 +69,7 @@ The primary functions of the software are:
 2. **Data validation**: A separate utility will verify the integrity of the provided dataset, ensuring graph[^8] connectivity and the absence of loops.
 3. **Response format selection**: The system supports user-selectable response formats, offering both XML and JSON outputs.
 4. **Error handling**: The API will return appropriate status codes and error messages based on standard REST API error handling practices.
-   Here a table of the error codes and their corresponding messages:
+   Here is a table of the error codes and their corresponding messages:
 
    | Error Code | Error Message         | Example Scenario                |
    | ---------- | --------------------- | ------------------------------- |
@@ -127,7 +130,7 @@ Here's the list of assumptions made for this project:
 
 ### Related Software
 
-The REST API will be developed in C++ and will be using a minimal web server framework to handle the HTTP requests. The API will be able to handle both XML and JSON response formats.
+The REST API will be developed in C++ and will use a minimal web server framework to handle HTTP requests. The API will be able to handle both XML and JSON response formats.
 The REST API will operate independently and will not directly interface with other software systems, except for common API testing tools (e.g., Postman, cURL).
 
 ## Specific Function Descriptions
@@ -161,26 +164,59 @@ std::string handleRequest(std::string request);
 
 ### Inputs
 
-Here's the list of input the user will provide to the system:
+The system accepts the following inputs via a GET request:
 
-- **Source ID**: The ID of the starting landmark.
-- **Destination ID**: The ID of the ending landmark.
-- **Dataset Path**: The path to the dataset file, probably defined by default to avoid user wrong input
-- **Format**: XML or JSON, the format in which the user wants the response.
-- **Error Code**: The error code returned by the system.
-- **Response Time**: The response time of the system.
-- **Request**: The HTTP request sent by the user.
+#### 1. HTTP Request
 
-By sending a GET request to the API with the source and destination IDs, the system will compute the shortest path between the two landmarks.
-
-Here's one example of the GET request:
+Users will interact with the API by sending a GET request in the following format:
 
 ```http
-GET /shortest-path?source=1&destination=10 HTTP/1.1
+GET /shortest-path?source={sourceID}&destination={destinationID}&format={responseFormat} HTTP/1.1
 Host: localhost:8080
 ```
 
-The system will process the request and return the result in the user-selected format (XML or JSON), as you might see in the [Outputs](#outputs) section.
+- **Parameters**:
+  - `source`: The ID of the source landmark.
+  - `destination`: The ID of the destination landmark.
+  - `format`: The response format (XML or JSON). The default is JSON.
+
+#### 2. Example Request
+
+A typical request might look like this:
+
+```http
+GET /shortest-path?source=1&destination=10&format=xml HTTP/1.1
+Host: localhost:8080
+```
+
+#### 3. Input Rules
+
+- **Source and Destination IDs**:
+
+  - The source and destination IDs must be valid integers corresponding to landmarks in the dataset.
+  - The source and destination IDs must be different otherwise the system will return this output:
+
+```json
+{
+  "time": 0,
+  "node_path": []
+}
+```
+
+```xml
+   <result>
+    <time>0</time>
+    <node_path></node_path>
+   </result>
+```
+
+- **Response Format**:
+
+  - By default, the response format is JSON.
+  - The user can select the response format by providing the `format` parameter in the request.
+
+- **Notes on Dataset**:
+  - The dataset must be pre-loaded into the system before processing requests, ensuring the system can handle the request in less than 1 second, as required.
 
 ### Processing
 
@@ -209,14 +245,14 @@ The system will output the following:
       ```
 
       ```xml
-      <result>
-        <travel_time>120</travel_time>
-        <node_path>
-          <node>1</node>
-          <node>5</node>
-          <node>7</node>
-          <node>10</node>
-        </node_path>
+          <result>
+            <travel_time>120</travel_time>
+            <node_path>
+              <node>1</node>
+              <node>5</node>
+              <node>7</node>
+              <node>10</node>
+            </node_path>
       ```
 
 2. **Error Response**:
@@ -225,19 +261,19 @@ The system will output the following:
    2. **Error message**: The error message corresponding to the error code.
       Example:
 
-      ```json
-      {
-        "error_code": 400,
-        "error_message": "Invalid ID provided"
-      }
-      ```
+```json
+{
+  "error_code": 400,
+  "error_message": "Invalid ID provided"
+}
+```
 
-      ```xml
-      <error>
-        <error_code>400</error_code>
-        <error_message>Invalid ID provided</error_message>
-      </error>
-      ```
+```xml
+     <error>
+       <error_code>400</error_code>
+       <error_message>Invalid ID provided</error_message>
+     </error>
+```
 
 ## External Interfaces
 
@@ -251,7 +287,7 @@ The software is designed to run on typical laptops with specifications similar t
 
 ### Software Interfaces
 
-- The system will expose a REST API endpoint for computing the shortest path.
+- The system will expose an REST API endpoint to compute the shortest path.
 - Common API testing tools (e.g., Postman, cURL) can be used to interact with the API.
 
 ### Communication Interfaces
@@ -335,14 +371,14 @@ The recommended development environment includes:
 - **C++ compiler:** GCC 10+ or Clang 11+
 - **Web server framework:** Crowcpp or Restbed
 - **IDE:** Visual Studio Code or CLion
-- **Testing framework:** Github Actions
+- **Testing framework:** GitHub Actions
 
 ### Deployment Environment
 
 The deployment environment includes:
 
 1. Clone the repository and build the project using the provided CMake configuration.
-2. Configure the web server to run the API on port 8080.
+2. Configure the webserver to run the API on port 8080.
 3. Ensure the dataset is loaded at the specified path during startup.
 4. Use a reverse proxy like Nginx for production deployments to handle HTTPS.
 
