@@ -197,18 +197,36 @@ The system will output the following:
       }
       ```
 
+      ```xml
+      <result>
+        <travel_time>120</travel_time>
+        <node_path>
+          <node>1</node>
+          <node>5</node>
+          <node>7</node>
+          <node>10</node>
+        </node_path>
+      ```
+
 2. **Error Response**:
 
    1. **Error code**: The error code returned by the system.
    2. **Error message**: The error message corresponding to the error code.
       Example:
 
-```json
-{
-  "error_code": 400,
-  "error_message": "Invalid ID provided"
-}
-```
+      ```json
+      {
+        "error_code": 400,
+        "error_message": "Invalid ID provided"
+      }
+      ```
+
+      ```xml
+      <error>
+        <error_code>400</error_code>
+        <error_message>Invalid ID provided</error_message>
+      </error>
+      ```
 
 ## External Interfaces
 
