@@ -170,7 +170,7 @@ To maintain consistency across the codebase and documentation, the following con
 
 ### Test Plan and Test Cases
 
-The detailed [test plan](Documents/QualityAssurance/TestPlan.md) and [test cases](Documents/QualityAssurance/TestCases.md) documents contain comprehensive descriptions of each test, including expected results and success criteria.
+The detailed [test plan](/Documents/QualityAssurance/TestPlan.md) and [test cases](/Documents/QualityAssurance/TestCases.md) documents contain comprehensive descriptions of each test, including expected results and success criteria.
 
 ---
 
