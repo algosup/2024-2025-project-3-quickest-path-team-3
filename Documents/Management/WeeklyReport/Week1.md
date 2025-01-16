@@ -1,30 +1,24 @@
 # Weekly Report
 
-**Week:** [Week Number]
-**Date:** [Start Date] - [End Date]
+**Week:** **1**
+**Date:** **01/06 - 01/10**
 
 ## Summary
 
-Provide a brief summary of the activities and progress made during the week.
+The team received the call for tender for the project, started to allocate the main tasks, and set our deadlines. The final deadline is 02/07. The functional specifications deadline is 01/17, the technical specifications deadline is 01/24, and the code, testing, and validation deadlines are 01/31.
 
 ## Accomplishments
 
-- [Accomplishment 1]
-- [Accomplishment 2]
-- [Accomplishment 3]
+- Templates for GitHub issues and pull requests were created.
+- Functional specifications are 80% complete and have been reviewed by the QA team.
+- Version 1 of the Test Plan, Test Case, and Bug Database was created.
 
-## Challenges
 
-- [Challenge 1]
-- [Challenge 2]
-- [Challenge 3]
 
-## Next Steps
+## Next steps 
+- Completing the functional specifications to 100%
+- Creating templates for the User Manual and Technical specifications
+- Implementing the first code feature
 
-- [Next Step 1]
-- [Next Step 2]
-- [Next Step 3]
 
-## Notes
 
-Include any additional notes or comments here.
