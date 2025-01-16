@@ -171,6 +171,17 @@ Here's the list of input the user will provide to the system:
 - **Response Time**: The response time of the system.
 - **Request**: The HTTP request sent by the user.
 
+By sending a GET request to the API with the source and destination IDs, the system will compute the shortest path between the two landmarks.
+
+Here's one example of the GET request:
+
+```http
+GET /shortest-path?source=1&destination=10 HTTP/1.1
+Host: localhost:8080
+```
+
+The system will process the request and return the result in the user-selected format (XML or JSON), as you might see in the [Outputs](#outputs) section.
+
 ### Processing
 
 The system will process the inputs as follows:
