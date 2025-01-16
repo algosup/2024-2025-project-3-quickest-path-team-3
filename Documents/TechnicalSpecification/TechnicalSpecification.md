@@ -188,7 +188,7 @@ The system will implement a **REST API** to calculate the quickest route between
 - **Base URL**: `https://{domain}/{version}/{resource}`
 - **Supported Response Formats**: `JSON`, `XML`
 
-![diagram](/documents/images/ApiRequest.png)
+![diagram](/Documents/TechnicalSpecification/Images/ApiRequest.png)
 
 #### Query Parameters
 
