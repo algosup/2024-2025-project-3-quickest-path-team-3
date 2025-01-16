@@ -49,7 +49,7 @@
 
 ### Product Description
 
-This software solution is a high-performance **REST API[^1]**, developed in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intended to handle a dataset with approximately 24 million nodes[^7], ensuring results are within 1 second of the response time for an average laptop.
+This software solution is a high-performance software system that provides a **REST API[^1]**, developed in **C++[^2]**, designed to compute the quickest path between two landmarks in the United States of America. The API is intended to handle a dataset with approximately 24 million nodes[^7], ensuring results are within 1 second of the response time for an average laptop.
 
 The key features of the solution include:
 
