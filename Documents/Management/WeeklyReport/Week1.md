@@ -5,22 +5,20 @@
 
 ## Summary
 
-The team get the call of tender of the project and start to allocated the main task and set our deadline. The Final deadline will be at 02/07. The Functional specifications deadline will be at 01/17, the technical specifications at 01/24, the code, the testing and validation at 01/31.
-
+The team received the call for tender for the project, started to allocate the main tasks, and set our deadlines. The final deadline is 02/07. The functional specifications deadline is 01/17, the technical specifications deadline is 01/24, and the code, testing, and validation deadlines are 01/31.
 
 ## Accomplishments
 
-- Template GitHub issue and Pull request created.
-- Functional specifications created (80% of completion) and review by the QA.
-- v1 of Test Plan, Test Case and BugDatabase. 
+- Templates for GitHub issues and pull requests were created.
+- Functional specifications are 80% complete and have been reviewed by the QA team.
+- Version 1 of the Test Plan, Test Case, and Bug Database was created.
 
 
 
-## Next Steps
-
-- Complete the Functional specifications at 100%.
-- Make at least Template for User Manual  and Technical Specifications.
-- Impletment the first code feature.
+## Next steps 
+- Completing the functional specifications to 100%
+- Creating templates for the User Manual and Technical specifications
+- Implementing the first code feature
 
 
 

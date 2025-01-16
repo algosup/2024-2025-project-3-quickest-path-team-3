@@ -72,8 +72,8 @@ The goal of this project is to develop a high-performance software solution that
 - Team Members: Alexis LASSELIN, Mathis PASCUCCI, Vivien Bistrel TSANGUE CHOUNGOU, Vianney POLARD, Lucas AUBARD, Julian REINE
 - Project Manager: Salaheddine NAMIR
 - Programe Manager: Alexis LASSELIN
-- Software Ingenieur : Vivien Bistrel TSANGUE CHOUNGOU
-- Software Ingenieur : Vianney POLARD
+- Software Engineer : Vivien Bistrel TSANGUE CHOUNGOU
+- Software Engineer : Vianney POLARD
 - Quality assurance : Lucas AUBARD
 - Technical Writer : Julian REINE
 - Technical Lead : Mathis PASCUCCI
