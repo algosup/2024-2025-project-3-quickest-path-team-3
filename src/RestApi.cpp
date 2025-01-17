@@ -1,44 +1,51 @@
 #include "RestApi.h"
-#include <crow.h>
 #include <sstream>
+#include <iostream>
 
-RestApi::RestApi(Graph& graph) : graph(graph) {}
+RestApi::RestApi(Graph &graph) : graph(graph) {}
 
-void RestApi::run() {
-    CROW_ROUTE(app, "/quickestpath")
-        .methods("GET"_method)
-        ([this](const crow::request& req) {
-            auto source = req.url_params.get("source");
-            auto destination = req.url_params.get("destination");
-            auto format = req.url_params.get("format");
+void RestApi::run()
+{
+    app.Get("/quickestpath", [this](const httplib::Request &req, httplib::Response &res)
+            {
+        auto source = req.get_param_value("source");
+        auto destination = req.get_param_value("destination");
+        auto format = req.has_param("format") ? req.get_param_value("format") : "";
 
-            if (!source || !destination) {
-                return crow::response(400, "Missing source or destination parameter");
+        if (source.empty() || destination.empty()) {
+            res.status = 400;
+            res.set_content("Missing source or destination parameter", "text/plain");
+            return;
+        }
+
+        auto result = graph.quickestPath(source, destination);
+        int time = result.first;
+        const std::vector<std::string>& path = result.second;
+
+        if (time == -1) {
+            res.status = 404;
+            res.set_content("Path not found", "text/plain");
+            return;
+        }
+
+        std::ostringstream os;
+        if (format == "xml") {
+            os << "<response><time>" << time << "</time><path>";
+            for (const auto& landmark : path) {
+                os << "<landmark>" << landmark << "</landmark>";
             }
-
-            auto result = graph.quickestPath(source, destination);
-            int time = result.first;
-            const std::vector<std::string>& path = result.second;
-
-            if (time == -1) {
-                return crow::response(404, "Path not found");
+            os << "</path></response>";
+            res.set_content(os.str(), "application/xml");
+        } else {
+            os << "{ \"time\": " << time << ", \"path\": [";
+            for (size_t i = 0; i < path.size(); ++i) {
+                os << "\"" << path[i] << "\"";
+                if (i != path.size() - 1) os << ",";
             }
+            os << "] }";
+            res.set_content(os.str(), "application/json");
+        } });
 
-            std::ostringstream os;
-            if (format && std::string(format) == "xml") {
-                os << "<response><time>" << time << "</time><path>";
-                for (const auto& landmark : path) {
-                    os << "<landmark>" << landmark << "</landmark>";
-                }
-                os << "</path></response>";
-                return crow::response(200, os.str());
-            } else {
-                crow::json::wvalue jsonResponse;
-                jsonResponse["time"] = time;
-                jsonResponse["path"] = path;
-                return crow::response(200, jsonResponse);
-            }
-        });
-
-    app.port(18080).multithreaded().run();
+    std::cout << "Server running on http://localhost:18080" << std::endl;
+    app.listen("0.0.0.0", 18080);
 }

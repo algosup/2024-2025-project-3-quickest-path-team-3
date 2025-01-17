@@ -41,6 +41,9 @@ int main() {
     RestApi api(graph);
     api.run();
 
+    std::cout << "Breakpoint" << std::endl;
+
+    
 
     return 0;
 }

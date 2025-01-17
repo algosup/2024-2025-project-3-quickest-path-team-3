@@ -2,7 +2,7 @@
 #define RESTAPI_H
 
 #include "Graph.h"
-#include <crow.h>
+#include "httplib.h"
 
 class RestApi {
 public:
@@ -11,7 +11,7 @@ public:
 
 private:
     Graph& graph;
-    crow::SimpleApp app;
+    httplib::Server app;
 };
 
 #endif // RESTAPI_H
