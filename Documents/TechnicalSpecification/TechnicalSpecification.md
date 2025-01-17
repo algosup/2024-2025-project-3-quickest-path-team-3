@@ -114,6 +114,7 @@ Metrics like **average response time**, **maximum response time**, and **failure
 
 ```folder
 ├── 2024-2025-project-3-quickest-path-team-3
+|   ├── Code
 |   ├── Documents
 |   |   ├── FunctionalSpecification
 |   |   |   ├── FunctionalSpecification.md
@@ -130,6 +131,13 @@ Metrics like **average response time**, **maximum response time**, and **failure
 |   |   |   |   ├── Week7.md
 |   |   |   ├── ProjectCharter.md
 |   |   ├── QualityAssurance
+|   |   |   ├── Images
+|   |   |   |   ├── BugReportIssue.png
+|   |   |   |   ├── FeatureRequest.png
+|   |   |   |   ├── GeneralQuestion.png
+|   |   |   |   ├── PullRequestTemplate.png
+|   |   |   |   ├── TypoReportIssue.png
+|   |   |   ├── TestCases.md
 |   |   |   ├── TestPlan.md
 |   |   ├── TechnicalSpecification
 |   |   |   ├── TechnicalSpecification.md
@@ -166,7 +174,7 @@ To maintain consistency across the codebase and documentation, the following con
 
 2. The system should maintain **correct functionality** even when handling **large datasets** with millions of landmarks.
 
-3. ...
+3. API responses must be compliant with the requested format (JSON/XML).
 
 ### Test Plan and Test Cases
 
@@ -245,6 +253,23 @@ The tool will confirm that the dataset is complete and that all landmarks are re
 #### Precomputed Data
 
 Some data will be precomputed to optimize performance, such as common routes between landmarks.
+
+## CSV File
+
+The system will use a CSV file to store landmark data. The file structure includes:
+
+| Column Name	| Description |
+| ----------- | ----------- |
+| ID |	Unique identifier for the landmark |
+|Name |	Name of the landmark |
+| Latitude | Latitude coordinates | 
+| Longitude	| Longitude coordinates |
+
+### Preprocessing Tasks
+
+1. Validation: Ensure all landmarks are unique and connected.
+2. Graph Construction: Convert the CSV data into an adjacency list or matrix for efficient pathfinding.
+3. Caching: Precompute frequently requested paths to optimize runtime performance.
 
 ---
 
