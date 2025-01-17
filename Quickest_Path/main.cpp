@@ -8,21 +8,9 @@ int main() {
 
     DataIntergrity data;
 
-
-
     data.LoadGraphFromCSV("../roads.csv");
 
-    data.display();
-
-    if (data.ValidateGraphIntergrity()) {
-        cout << "\n\nGraph integrity validated successfully." << endl;
-    } else {
-        cout << "Graph integrity validation failed." << endl;
-    }
-
-
-
-
+    //data.display();
 
     return 0;
 }

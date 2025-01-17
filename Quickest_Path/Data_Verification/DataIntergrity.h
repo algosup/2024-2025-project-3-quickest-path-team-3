@@ -16,8 +16,9 @@ using namespace std;
 
 class DataIntergrity {
 public:
+
     bool ValidateGraphIntergrity();
-    bool detectCycleLoop(int node, unordered_set<int> visited, unordered_set<int> stack);
+    bool detectCycleLoop(int node, unordered_set<int> &visited, unordered_set<int> &stack, vector<int> &path);
     bool detectSelfLoop();
     void LoadGraphFromCSV(const string& filename);
     void AddEdge(int u, int v, int w);
