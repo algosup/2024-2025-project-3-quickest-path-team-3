@@ -1,6 +1,6 @@
 #include "Graph.h"
 #include "RestApi.h"
-#include"PathFinder.h"
+#include "PathFinder.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -35,15 +35,10 @@ int main() {
         }
 
         graph.addEdge(landmarkA, landmarkB, time);
-        
     }
 
     RestApi api(graph);
     api.run();
-
-    std::cout << "Breakpoint" << std::endl;
-
-    
 
     return 0;
 }

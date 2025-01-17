@@ -2,12 +2,16 @@
 #include <sstream>
 #include <iostream>
 
-RestApi::RestApi(Graph &graph) : graph(graph) {}
+RestApi::RestApi(Graph& graph) : graph(graph) {}
 
-void RestApi::run()
-{
-    app.Get("/quickestpath", [this](const httplib::Request &req, httplib::Response &res)
-            {
+void RestApi::run() {
+    // Root endpoint
+    app.Get("/", [](const httplib::Request& req, httplib::Response& res) {
+        res.set_content("Welcome to the REST API. Try /quickestpath with parameters.", "text/plain");
+    });
+
+    // Endpoint for quickest path
+    app.Get("/quickestpath", [this](const httplib::Request& req, httplib::Response& res) {
         auto source = req.get_param_value("source");
         auto destination = req.get_param_value("destination");
         auto format = req.has_param("format") ? req.get_param_value("format") : "";
@@ -44,7 +48,14 @@ void RestApi::run()
             }
             os << "] }";
             res.set_content(os.str(), "application/json");
-        } });
+        }
+    });
+
+    // Default error handler
+    app.set_error_handler([](const httplib::Request& req, httplib::Response& res) {
+        res.status = 404;
+        res.set_content("The requested resource was not found.", "text/plain");
+    });
 
     std::cout << "Server running on http://localhost:18080" << std::endl;
     app.listen("0.0.0.0", 18080);
