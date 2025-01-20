@@ -15,3 +15,11 @@
 ## Project Description
 
 The goal of this project, the third of the scholar year, is to develop a high-performance software solution that computes the quickest path between two landmarks in the United States. This solution must be implemented in C++ and accessed via a REST API with specific input-output formats.
+
+## Project Structure
+
+The project is divided into several directories, each containing a specific part of the project:
+
+- `Documents/`: Contains all the documents related to the project (Specifications, Reports, etc.);
+- `Src/`: Contains the source code of the project;
+- `Tests/`: Contains the tests of the project.
