@@ -198,6 +198,37 @@ The system will implement a **REST API** to calculate the quickest route between
 
 ![diagram](/Documents/TechnicalSpecification/Images/ApiRequest.png)
 
+#### API Testing with cURL
+
+Once the server is running, you can test the API functionality using the following cURL commands:
+
+Request a **JSON** Response:
+```
+curl "http://localhost:18080/quickestpath?source=1&destination=12"
+```
+This will return the quickest path in JSON format.
+
+Request an **XML** Response:
+```
+curl "http://localhost:18080/quickestpath?source=1&destination=12&format=xml"
+```
+This will return the quickest path in XML format.
+
+Expected Output: For **JSON**:
+```json
+{
+  "path": [1, 3, 7, 12],
+  "distance": 8.5
+}
+```
+For **XML**:
+
+```xml
+<response>
+  <path>1, 3, 7, 12</path>
+  <distance>8.5</distance>
+</response>
+```
 #### Query Parameters
 
 The API will accept the following query parameters:
@@ -298,14 +329,54 @@ The system will use a CSV file to store landmark data. The file structure includ
 #### macOS Setup
 
 For macOS, follow the instructions in this section to configure the environment and compile the code.
+To compile the application on macOS, ensure you have g++ installed (you can install it via Xcode command-line tools or Homebrew).
+
+**Here's how to compile:**
+
+```bash
+g++ -std=c++17 -o RestApiApp \
+RestApi.cpp QuickestPath.cpp PathFinder.cpp Graph.cpp
+```
+
+**Run the executable:**
+
+```bash
+./RestApiApp
+```
 
 #### Windows Setup
 
 For Windows, ensure you have installed the necessary dependencies using the guide.
+Windows does not come with g++ by default, so you need to set up a compiler like MinGW or use WSL (Windows Subsystem for Linux).
+
+**Here's how to compile:**
+
+```bash
+g++ -std=c++17 -o RestApiApp.exe ^
+RestApi.cpp QuickestPath.cpp PathFinder.cpp Graph.cpp
+```
+**Run the executable:**
+
+```bash
+RestApiApp.exe
+```
 
 #### Linux Setup
 
 For Linux, use the terminal commands to set up the project.
+Linux typically comes with g++ (part of the GCC toolchain) pre-installed or easily installable. 
 
+**Here's how to compile:**
+
+```bash
+g++ -std=c++17 -o RestApiApp \
+RestApi.cpp QuickestPath.cpp PathFinder.cpp Graph.cpp
+```
+
+**Run the executable:**
+
+```bash
+./RestApiApp
+```
 --- 
 
