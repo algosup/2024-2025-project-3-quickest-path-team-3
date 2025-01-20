@@ -1,16 +1,20 @@
 #include <iostream>
 #include <sstream>
-#include "Data_Verification/DataIntergrity.h"
+#include "Data_Verification/DataIntegrity.h"
 #include <fstream>
 #include <filesystem>
 
 int main() {
 
-    DataIntergrity data;
+    DataIntegrity data;
 
+    cout <<endl;
+    cout << "======================= LOOPS DETECTION ===========================" << endl;
     data.LoadGraphFromCSV("../roads.csv");
 
-    //data.display();
+    cout << endl;
+    cout << "======================= CONNECTIVITY CHECK ========================" << endl;
+    data.Connectivity();
 
     return 0;
 }

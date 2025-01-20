@@ -1,9 +1,5 @@
-//
-// Created by Vivien Bistrel TSANGUE CHOUNGOU on 15/01/2025.
-//
-
-#ifndef DATAINTERGRITY_H
-#define DATAINTERGRITY_H
+#ifndef DATAINTEGRITY_H
+#define DATAINTEGRITY_H
 
 #include <unordered_set>
 #include <string>
@@ -14,17 +10,18 @@ using namespace std;
 
 
 
-class DataIntergrity {
+class DataIntegrity {
 public:
-
-    bool ValidateGraphIntergrity();
+    bool ValidateGraphIntegrity();
     bool detectCycleLoop(int node, unordered_set<int> &visited, unordered_set<int> &stack, vector<int> &path);
     bool detectSelfLoop();
-    void LoadGraphFromCSV(const string& filename);
+    void LoadGraphFromCSV(const std::string& filename);
     void AddEdge(int u, int v, int w);
     void display() const;
+    bool Connectivity();
+    void DFSConnectivity(int node, unordered_set<int>& visited);
 };
 
 
 
-#endif //DATAINTERGRITY_H
+#endif //DATAINTEGRITY_H
