@@ -10,9 +10,9 @@
 ---
 
 <details>
-<summary> Table of Contents </summary>
+<summary>Table of Contents</summary>
 
-- [Technical Specifications - Quickest Path Project](#technical-specifications---quickest-path-project)
+- [Technical Specifications - Quickest Path](#technical-specifications---quickest-path)
   - [Before Reading](#before-reading)
   - [I. Introduction](#i-introduction)
     - [Overview](#overview)
@@ -28,26 +28,24 @@
   - [III. Constraints and Limitations](#iii-constraints-and-limitations)
   - [IV. Conventions](#iv-conventions)
     - [Naming Conventions](#naming-conventions)
-    - [Folders & Files](#folders--files)
-    - [Variables](#variables)
-    - [Constants](#constants)
   - [V. Testing and Validation](#v-testing-and-validation)
     - [Validation Criteria](#validation-criteria)
     - [Test Plan and Test Cases](#test-plan-and-test-cases)
   - [VI. Requirements](#vi-requirements)
     - [Core Requirements](#core-requirements)
       - [REST API Implementation](#rest-api-implementation)
+      - [API Testing with cURL](#api-testing-with-curl)
       - [Query Parameters](#query-parameters)
       - [Output Specification](#output-specification)
       - [Error Handling](#error-handling)
       - [Algorithm Implementation](#algorithm-implementation)
         - [Shortest Path Calculation](#shortest-path-calculation)
-      - [Dataset Preprocessing](#dataset-preprocessing)
-        - [Validation Tool](#validation-tool)
-        - [Precomputed Data](#precomputed-data)
-  - [IX. Setup Guide](#ix-setup-guide)
-    - [IX.1 Prerequisites](#ix1-prerequisites)
-    - [IX.2 Setup Instructions](#ix2-setup-instructions)
+    - [Dataset Preprocessing](#dataset-preprocessing)
+      - [Validation Tool](#validation-tool)
+      - [Precomputed Data](#precomputed-data)
+  - [VII. Setup Guide](#vii-setup-guide)
+    - [Prerequisites](#prerequisites)
+    - [Setup Instructions](#setup-instructions)
       - [macOS Setup](#macos-setup)
       - [Windows Setup](#windows-setup)
       - [Linux Setup](#linux-setup)
@@ -114,12 +112,17 @@ Metrics like **average response time**, **maximum response time**, and **failure
 
 ```folder
 ├── 2024-2025-project-3-quickest-path-team-3
+|   ├── .github
+|   |   ├── ISSUE_TEMPLATE
+|   |   |   ├── BugReport.yml
+|   |   |   ├── DocumentationTypo.yml
+|   |   |   ├── FeatureRequestTemplate.yml
+|   |   |   ├── GeneralQuestion.yml
+|   |   ├── PULL_REQUEST_TEMPLATE.md
 |   ├── Code
 |   ├── Documents
 |   |   ├── FunctionalSpecification
 |   |   |   ├── FunctionalSpecification.md
-|   |   ├──Images
-|   |   |   ├── API.png
 |   |   ├── Management
 |   |   |   ├── WeeklyReport
 |   |   |   |   ├── Week1.md
@@ -140,6 +143,8 @@ Metrics like **average response time**, **maximum response time**, and **failure
 |   |   |   ├── TestCases.md
 |   |   |   ├── TestPlan.md
 |   |   ├── TechnicalSpecification
+|   |   |   ├── Images
+|   |   |   |   ├── ApiRequest.png
 |   |   |   ├── TechnicalSpecification.md
 |   |   ├── UserManual
 |   |   |   ├── UserManual.md
@@ -304,9 +309,9 @@ The system will use a CSV file to store landmark data. The file structure includ
 
 ---
 
-## IX. Setup Guide
+## VII. Setup Guide
 
-### IX.I Prerequisites
+### Prerequisites
 
 #### Software Prerequisites:
 - macOS Sequoia
@@ -324,7 +329,7 @@ The system will use a CSV file to store landmark data. The file structure includ
 
 ---
 
-### IX.II Setup Instructions
+### Setup Instructions
 
 #### macOS Setup
 
