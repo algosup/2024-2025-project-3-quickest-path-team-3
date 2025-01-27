@@ -1,20 +1,18 @@
 #include "RestApi.h"
+#include "PathFinder.h"
 #include <sstream>
 #include <iostream>
 
 RestApi::RestApi(Graph& graph) : graph(graph) {}
 
 void RestApi::run() {
-    // Root endpoint
     app.Get("/", [](const httplib::Request& req, httplib::Response& res) {
         res.set_content("Welcome to the REST API. Try /quickestpath with parameters.", "text/plain");
     });
 
-    // Endpoint for quickest path
     app.Get("/quickestpath", [this](const httplib::Request& req, httplib::Response& res) {
         auto source = req.get_param_value("source");
         auto destination = req.get_param_value("destination");
-        auto format = req.has_param("format") ? req.get_param_value("format") : "";
 
         if (source.empty() || destination.empty()) {
             res.status = 400;
@@ -22,9 +20,10 @@ void RestApi::run() {
             return;
         }
 
-        auto result = graph.quickestPath(source, destination);
+        PathFinder pathFinder(graph);
+        auto result = pathFinder.findQuickestPath(source, destination);
         int time = result.first;
-        const std::vector<std::string>& path = result.second;
+        const auto& path = result.second;
 
         if (time == -1) {
             res.status = 404;
@@ -33,28 +32,13 @@ void RestApi::run() {
         }
 
         std::ostringstream os;
-        if (format == "xml") {
-            os << "<response><time>" << time << "</time><path>";
-            for (const auto& landmark : path) {
-                os << "<landmark>" << landmark << "</landmark>";
-            }
-            os << "</path></response>";
-            res.set_content(os.str(), "application/xml");
-        } else {
-            os << "{ \"time\": " << time << ", \"path\": [";
-            for (size_t i = 0; i < path.size(); ++i) {
-                os << "\"" << path[i] << "\"";
-                if (i != path.size() - 1) os << ",";
-            }
-            os << "] }";
-            res.set_content(os.str(), "application/json");
+        os << "{ \"time\": " << time << ", \"path\": [";
+        for (size_t i = 0; i < path.size(); ++i) {
+            os << "\"" << path[i] << "\"";
+            if (i != path.size() - 1) os << ",";
         }
-    });
-
-    // Default error handler
-    app.set_error_handler([](const httplib::Request& req, httplib::Response& res) {
-        res.status = 404;
-        res.set_content("The requested resource was not found.", "text/plain");
+        os << "] }";
+        res.set_content(os.str(), "application/json");
     });
 
     std::cout << "Server running on http://localhost:18080" << std::endl;

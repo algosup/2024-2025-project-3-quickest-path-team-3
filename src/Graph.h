@@ -9,11 +9,14 @@
 class Graph {
 public:
     void addEdge(const std::string& landmarkA, const std::string& landmarkB, int time);
-    std::pair<int, std::vector<std::string>> quickestPath(const std::string& start, const std::string& end) const;
-    const std::unordered_map<std::string, std::vector<std::pair<std::string, int>>>& getAdjList() const;
+    const std::unordered_map<std::string, int>& getNodeIndex() const;
+    const std::vector<std::string>& getIndexToNode() const;
+    const std::vector<std::vector<std::pair<int, int>>>& getAdjList() const;
 
 private:
-    std::unordered_map<std::string, std::vector<std::pair<std::string, int>>> adjList;
+    std::unordered_map<std::string, int> nodeIndex; // Maps node names to indices
+    std::vector<std::string> indexToNode;           // Maps indices back to node names
+    std::vector<std::vector<std::pair<int, int>>> adjList; // Adjacency list
 };
 
 #endif // GRAPH_H

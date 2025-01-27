@@ -1,48 +1,55 @@
 #include "PathFinder.h"
 #include <queue>
-#include <unordered_map>
 #include <limits>
+#include <algorithm>
 
 PathFinder::PathFinder(const Graph& graph) : graph(graph) {}
 
 std::pair<int, std::vector<std::string>> PathFinder::findQuickestPath(const std::string& source, const std::string& destination) {
-    std::unordered_map<std::string, int> time;
-    std::unordered_map<std::string, std::string> previous;
-    std::priority_queue<std::pair<int, std::string>, std::vector<std::pair<int, std::string>>, std::greater<std::pair<int, std::string>>> pq;
+    const auto& adjList = graph.getAdjList();
+    const auto& nodeIndex = graph.getNodeIndex();
+    const auto& indexToNode = graph.getIndexToNode();
 
-    for (const auto& pair : graph.getAdjList()) {
-        time[pair.first] = std::numeric_limits<int>::max();
-        previous[pair.first] = "";
+    if (nodeIndex.find(source) == nodeIndex.end() || nodeIndex.find(destination) == nodeIndex.end()) {
+        return { -1, {} }; // Nodes not found
     }
 
-    time[source] = 0;
-    pq.push({0, source});
+    int n = adjList.size();
+    std::vector<int> dist(n, std::numeric_limits<int>::max());
+    std::vector<int> prev(n, -1);
+    std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> pq;
+
+    int src = nodeIndex.at(source);
+    int dest = nodeIndex.at(destination);
+    dist[src] = 0;
+    pq.emplace(0, src);
 
     while (!pq.empty()) {
-        auto current = pq.top().second;
+        auto [currentDist, currentNode] = pq.top();
         pq.pop();
 
-        for (const auto& neighbor : graph.getAdjList().at(current)) {
-            auto newTime = time[current] + neighbor.second;
-            if (newTime < time[neighbor.first]) {
-                time[neighbor.first] = newTime;
-                previous[neighbor.first] = current;
-                pq.push({newTime, neighbor.first});
+        if (currentNode == dest) break;
+
+        if (currentDist > dist[currentNode]) continue;
+
+        for (const auto& [neighbor, weight] : adjList[currentNode]) {
+            int newDist = currentDist + weight;
+            if (newDist < dist[neighbor]) {
+                dist[neighbor] = newDist;
+                prev[neighbor] = currentNode;
+                pq.emplace(newDist, neighbor);
             }
         }
     }
 
-    if (previous[destination].empty()) {
-        return { -1, {} };
+    if (dist[dest] == std::numeric_limits<int>::max()) {
+        return { -1, {} }; // No path found
     }
 
     std::vector<std::string> path;
-    auto current = destination;
-    while (!current.empty()) {
-        path.push_back(current);
-        current = previous[current];
+    for (int at = dest; at != -1; at = prev[at]) {
+        path.push_back(indexToNode[at]);
     }
-
     std::reverse(path.begin(), path.end());
-    return { time[destination], path };
+    return { dist[dest], path };
 }
