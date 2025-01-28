@@ -185,6 +185,8 @@ As we need to expose a REST API, we need to use an HTTP library to handle HTTP r
 
 You can find the `httplib` library [here](https://github.com/yhirose/cpp-httplib)
 
+This library is lightweight, efficient, and easy to integrate into the project. It allows us to create a REST API quickly and handle HTTP requests and responses with ease.
+
 ### REST API
 
 The REST API, or Representational State Transfer Application Programming Interface, is a set of rules and conventions for building and interacting with web services. It is based on the principles of REST, a style of software architecture that defines a set of constraints for creating scalable and reliable web services.
@@ -233,3 +235,5 @@ This sequence diagram illustrates how the **REST API processes requests** to com
 ### LocalHost
 
 The API must be hosted on `localhost` and listen on port `18080`. This is the default configuration for the API, and users can access it by sending requests to `http://localhost:18080/quickestpath`.
+
+Using the localhost environment allows developers to test the API locally before deploying it to a production server. It also simplifies the development process by providing a controlled environment for debugging and testing.
