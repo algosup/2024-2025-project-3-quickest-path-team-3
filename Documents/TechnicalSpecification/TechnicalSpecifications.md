@@ -23,6 +23,10 @@
 			- [**API Sequence Diagram Explanation**](#api-sequence-diagram-explanation)
 			- [**Why These Improvements Matter?**](#why-these-improvements-matter)
 		- [LocalHost](#localhost)
+			- [Localhost Configuration](#localhost-configuration)
+			- [Example Request and Response](#example-request-and-response)
+				- [Expected Response](#expected-response)
+				- [Error Response](#error-response)
 
 </details>
 
@@ -237,3 +241,57 @@ This sequence diagram illustrates how the **REST API processes requests** to com
 The API must be hosted on `localhost` and listen on port `18080`. This is the default configuration for the API, and users can access it by sending requests to `http://localhost:18080/quickestpath`.
 
 Using the localhost environment allows developers to test the API locally before deploying it to a production server. It also simplifies the development process by providing a controlled environment for debugging and testing.
+
+#### Localhost Configuration
+
+- **Host:** `localhost`
+- **Port:** `18080`
+- **Endpoint:** `/quickestpath`
+- **Method:** `GET`
+- **Parameters:**
+  - `source`: The starting landmark
+  - `destination`: The ending landmark
+  - `format`: The desired response format (JSON or XML) (optional)
+
+#### Example Request and Response
+
+Here's an example of a GET request to the API:
+
+```http
+curl "http://localhost:18080/quickestpath?source=1&destination=12"
+```
+
+##### Expected Response
+
+If the input is valid, the API should return the quickest path between the two landmarks in JSON format:
+
+```json
+{
+  "time": 120,
+  "path": [1, 5, 12]
+}
+```
+
+or in XML format:
+
+```xml
+<quickestpath>
+  <time>120</time>
+  <path>
+    <landmark>1</landmark>
+    <landmark>5</landmark>
+    <landmark>12</landmark>
+  </path>
+</quickestpath>
+```
+
+##### Error Response
+
+If the input is invalid (e.g., landmarks not found), the API should return an appropriate error message in JSON format:
+
+```json
+{
+  "code": 404,
+  "error": "Landmarks not found"
+}
+```
