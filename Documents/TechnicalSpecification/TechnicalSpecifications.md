@@ -6,27 +6,27 @@
 <summary>Table of Contents</summary>
 
 - [Technical Specifications](#technical-specifications)
-	- [Introduction](#introduction)
-		- [Project Overview](#project-overview)
-	- [Technical Requirements](#technical-requirements)
-		- [REST API Requirements](#rest-api-requirements)
-		- [Data Source](#data-source)
-		- [Performance Requirements](#performance-requirements)
-		- [Data Integrity Checks](#data-integrity-checks)
-		- [Expected Deliverables](#expected-deliverables)
-	- [Development Environment](#development-environment)
-		- [File Structure](#file-structure)
-		- [Dependencies](#dependencies)
-			- [STL](#stl)
-			- [HTTP Library](#http-library)
-		- [REST API](#rest-api)
-			- [**API Sequence Diagram Explanation**](#api-sequence-diagram-explanation)
-			- [**Why These Improvements Matter?**](#why-these-improvements-matter)
-		- [LocalHost](#localhost)
-			- [Localhost Configuration](#localhost-configuration)
-			- [Example Request and Response](#example-request-and-response)
-				- [Expected Response](#expected-response)
-				- [Error Response](#error-response)
+  - [Introduction](#introduction)
+    - [Project Overview](#project-overview)
+  - [Technical Requirements](#technical-requirements)
+    - [REST API Requirements](#rest-api-requirements)
+    - [Data Source](#data-source)
+    - [Performance Requirements](#performance-requirements)
+    - [Data Integrity Checks](#data-integrity-checks)
+    - [Expected Deliverables](#expected-deliverables)
+  - [Development Environment](#development-environment)
+    - [File Structure](#file-structure)
+    - [Dependencies](#dependencies)
+      - [STL](#stl)
+      - [HTTP Library](#http-library)
+    - [REST API](#rest-api)
+      - [**API Sequence Diagram Explanation**](#api-sequence-diagram-explanation)
+      - [**Why These Improvements Matter?**](#why-these-improvements-matter)
+    - [LocalHost](#localhost)
+      - [Localhost Configuration](#localhost-configuration)
+      - [Example Request and Response](#example-request-and-response)
+        - [Expected Response](#expected-response)
+        - [Error Response](#error-response)
 
 </details>
 
@@ -107,7 +107,7 @@ Before processing the dataset, the system must perform data integrity checks to 
 - Verify tif the graph might be a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Directed Acyclic Graph) free of cycles. In other words, you cannot traverse a sequence of directed edges and return to the same node, following the edge directions.
   Here an picture showing the difference between a DCG and a DAG:
 
-  ![DCG vs DAG](./Images/DCG_DAG.png)
+  ![DCG vs DAG](./Images/DCG_DAG.jpg)
 
   As you might see, the DCG has a cycle, 1 -> 2 -> 3 -> 4-> 1, while the DAG does not have any cycle as the nodes 2 and 3 both point to the node 4, but the node 4 does not point to any other node.
 
