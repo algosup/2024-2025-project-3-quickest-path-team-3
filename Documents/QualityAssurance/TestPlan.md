@@ -106,7 +106,6 @@ The scope of this test plan includes the testing of the software solution’s RE
 - C++ compiler (compatible with the project's language requirement)
 - HTTP server for running the REST API
 - Tools for testing API responses (Postman, cURL, etc.)
-- Load testing tools (e.g., Apache JMeter)
 
 ### 4.3 **Data**
 
@@ -232,7 +231,6 @@ You will be able to find the all the bugs in Github's issue tab. You will also b
 ### 8.1 **Test Tools**
 
 - Postman (for API testing)
-- Apache JMeter (for load testing)
 - C++ Compiler
 - Data Validation Tool
 
