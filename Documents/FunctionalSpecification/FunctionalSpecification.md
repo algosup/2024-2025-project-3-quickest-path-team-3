@@ -1,12 +1,11 @@
 # Functional specifications
 
-## Table of Contents
+---
 
 <details>
-<summary> Click to expand </summary>
+<summary> Table of Contents </summary>
 
 - [Functional specifications](#functional-specifications)
-  - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
     - [Product Description](#product-description)
     - [Product Functional Capabilities](#product-functional-capabilities)
@@ -47,6 +46,8 @@
   - [Glossary](#glossary)
 
 </details>
+
+---
 
 ## Overview
 
