@@ -13,6 +13,7 @@ void RestApi::run() {
     app.Get("/quickestpath", [this](const httplib::Request& req, httplib::Response& res) {
         auto source = req.get_param_value("source");
         auto destination = req.get_param_value("destination");
+        auto format = req.get_param_value("format"); // Optional format parameter
 
         if (source.empty() || destination.empty()) {
             res.status = 400;
@@ -31,14 +32,28 @@ void RestApi::run() {
             return;
         }
 
-        std::ostringstream os;
-        os << "{ \"time\": " << time << ", \"path\": [";
-        for (size_t i = 0; i < path.size(); ++i) {
-            os << "\"" << path[i] << "\"";
-            if (i != path.size() - 1) os << ",";
+        // Generate response based on requested format
+        if (format == "xml") {
+            std::ostringstream os;
+            os << "<response>";
+            os << "<time>" << time << "</time>";
+            os << "<path>";
+            for (const auto& node : path) {
+                os << "<node>" << node << "</node>";
+            }
+            os << "</path>";
+            os << "</response>";
+            res.set_content(os.str(), "application/xml");
+        } else { // Default to JSON
+            std::ostringstream os;
+            os << "{ \"time\": " << time << ", \"path\": [";
+            for (size_t i = 0; i < path.size(); ++i) {
+                os << "\"" << path[i] << "\"";
+                if (i != path.size() - 1) os << ",";
+            }
+            os << "] }";
+            res.set_content(os.str(), "application/json");
         }
-        os << "] }";
-        res.set_content(os.str(), "application/json");
     });
 
     std::cout << "Server running on http://localhost:18080" << std::endl;
