@@ -1,4 +1,4 @@
-#include "PathFinder.h"
+#include "PathFinder.hpp"
 #include <queue>
 #include <limits>
 #include <algorithm>

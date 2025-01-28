@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Graph.hpp"
 
 void Graph::addEdge(const std::string& landmarkA, const std::string& landmarkB, int time) {
     if (nodeIndex.find(landmarkA) == nodeIndex.end()) {

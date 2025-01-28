@@ -1,5 +1,5 @@
-#include "Graph.h"
-#include "RestApi.h"
+#include "Graph.hpp"
+#include "RestApi.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>

@@ -1,5 +1,5 @@
-#include "RestApi.h"
-#include "PathFinder.h"
+#include "RestApi.hpp"
+#include "PathFinder.hpp"
 #include <sstream>
 #include <iostream>
 

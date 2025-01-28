@@ -1,7 +1,7 @@
 #ifndef PATHFINDER_H
 #define PATHFINDER_H
 
-#include "Graph.h"
+#include "Graph.hpp"
 #include <vector>
 #include <string>
 
