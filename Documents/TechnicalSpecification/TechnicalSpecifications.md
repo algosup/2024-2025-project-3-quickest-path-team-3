@@ -9,13 +9,20 @@
 	- [Introduction](#introduction)
 		- [Project Overview](#project-overview)
 	- [Technical Requirements](#technical-requirements)
-		- [REST API](#rest-api)
+		- [REST API Requirements](#rest-api-requirements)
 		- [Data Source](#data-source)
 		- [Performance Requirements](#performance-requirements)
 		- [Data Integrity Checks](#data-integrity-checks)
 		- [Expected Deliverables](#expected-deliverables)
 	- [Development Environment](#development-environment)
-	- [File Structure](#file-structure)
+		- [File Structure](#file-structure)
+		- [Dependencies](#dependencies)
+			- [STL](#stl)
+			- [HTTP Library](#http-library)
+		- [REST API](#rest-api)
+			- [**API Sequence Diagram Explanation**](#api-sequence-diagram-explanation)
+			- [**Why These Improvements Matter?**](#why-these-improvements-matter)
+		- [LocalHost](#localhost)
 
 </details>
 
@@ -33,7 +40,7 @@ This project is really valuable because it will enable users to quickly find the
 
 The software must be developed in C++, allowing for high performance and efficient memory management.
 
-### REST API
+### REST API Requirements
 
 The system must expose a REST API that accepts HTTP GET requests with the following parameters:
 
@@ -124,7 +131,7 @@ Regarding the IDE, we strongly recommend using Visual Studio Code with the C++ e
 
 As we need to use only the standard library, no external libraries are allowed in this project. To see the full list of allowed libraries, please refer to the [C++ Standard Library](https://cplusplus.com/reference/) documentation.
 
-## File Structure
+### File Structure
 
 The file structure of the project should be as follows:
 
@@ -147,3 +154,82 @@ The file structure of the project should be as follows:
 ├── LICENSE
 ├── README.md
 ```
+
+The `src` directory contains the source code of the project.
+
+### Dependencies
+
+#### STL
+
+The project must use only the C++ Standard Library, no external libraries are allowed. To see the full list of allowed libraries, please refer to the [C++ Standard Library](https://cplusplus.com/reference/) documentation.
+
+However, for this project, performance and scalability are the main concerns, so we need to use the most efficient algorithms and data structures available in the C++ Standard Library.
+
+Here's a list of the libraries that we recommend using:
+
+- `algorithm`: A library that provides a collection of functions for performing operations on ranges of elements.
+- `chrono`: A library that provides time-related functions.
+- `fstream`: A library that provides file input and output operations.
+- `iostream`: A library that provides input and output operations.
+- `limits`: A library that provides constants for the limits of fundamental data types.
+- `queue`: A container that provides a FIFO (First In First Out) data structure.
+- `string`: A library that provides string manipulation functions.
+- `sstream`: A library that provides string stream classes.
+- `unordered_map`: A key-value container that stores elements in an unordered way.
+- `utility`: A library that provides various utility functions.
+- `vector`: A dynamic array that can grow and shrink in size.
+
+#### HTTP Library
+
+As we need to expose a REST API, we need to use an HTTP library to handle HTTP requests and responses. We recommend using the `httplib` library, a C++ header-only library that provides a simple and easy-to-use interface for creating HTTP servers and clients.
+
+You can find the `httplib` library [here](https://github.com/yhirose/cpp-httplib)
+
+### REST API
+
+The REST API, or Representational State Transfer Application Programming Interface, is a set of rules and conventions for building and interacting with web services. It is based on the principles of REST, a style of software architecture that defines a set of constraints for creating scalable and reliable web services.
+
+For this project, the REST API only needs to support the `GET` method, as we are only retrieving data from the server. Here's the sequence diagram of the API:
+
+![Sequence Diagram](./Images/SequenceAlgo.png)
+
+#### **API Sequence Diagram Explanation**
+
+This sequence diagram illustrates how the **REST API processes requests** to compute the quickest path between two landmarks. Below are the key steps and improvements:
+
+1. **User Request:**
+
+   - The user sends a **GET request** to the API with parameters (`source`, `destination`, `format`).
+
+2. **Validation Stage:**
+
+   - The API **validates** the input parameters.
+   - If the input is **invalid** (e.g., missing parameters, non-existent landmarks), the API **immediately returns** an appropriate **error response (400/404)** without calling the Algorithm.
+
+3. **Processing the Quickest Path:**
+
+   - If the input is valid, the API forwards the request to the **Algorithm**, which computes the quickest path.
+
+4. **Handling Timeouts:**
+
+   - If the Algorithm takes too long to compute, the API **returns a 504 Gateway Timeout** to the user.
+   - This ensures the system remains responsive.
+
+5. **Successful Response:**
+
+   - If the computation succeeds, the Algorithm returns the **travel time** and **path sequence** to the API.
+   - The API sends the response in **JSON or XML format** based on the user’s request.
+
+6. **Handling Internal Errors:**
+   - If an unexpected issue occurs (e.g., dataset corruption, computation failure), the API **returns a 500 Internal Server Error** instead of crashing.
+   - This prevents exposing unnecessary system details to the user.
+
+#### **Why These Improvements Matter?**
+
+✅ **Faster response times** by rejecting invalid requests early.  
+✅ **Better reliability** by handling timeouts and internal errors.  
+✅ **Clearer API behavior** for users and developers.
+
+### LocalHost
+
+The API must be hosted on `localhost` and listen on port `18080`. This is the default configuration for the API, and users can access it by sending requests to `http://localhost:18080/quickestpath`.
