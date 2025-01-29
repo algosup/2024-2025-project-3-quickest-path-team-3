@@ -181,16 +181,7 @@ bool DataIntegrity::ValidateGraphIntegrity() {
 ////////////// Check the connectivity of the graph //////////////
 bool DataIntegrity::Connectivity() {
     unordered_set<int> visited; // Create a set to store visited nodes
-    cout << "\nStart from node : " << graph.begin()->first << " " << endl;
     DFSConnectivity(graph.begin()->first, visited);
-    cout << endl;
-
-    cout << "All visited nodes = " << endl;
-    cout << "{";
-    for (const auto& node : visited) {
-        cout << node << ", ";
-    }
-    cout << "}" << endl;
     cout << endl;
 
     if (visited.size() != graph.size()) {
@@ -206,12 +197,18 @@ bool DataIntegrity::Connectivity() {
 ////////////// Depth First Search to check the connectivity of the graph //////////////
 void DataIntegrity::DFSConnectivity(int node, unordered_set<int>& visited) {
     visited.insert(node); // mark the node as visited
-    cout << "\nVisited node " << node << endl;
+    stack<int> nodeStack;
+    nodeStack.push(node);
 
-    for (const auto& [neighbor, _] : graph[node]) {
-        if (!visited.count(neighbor)) { // if the neighbor has not been visited, then recursively call the DFSConnectivity function
-            cout << "Going deeper from node " << node << " to node " << neighbor << endl;
-            DFSConnectivity(neighbor, visited);
+    while (!nodeStack.empty()) {
+        int currentNode = nodeStack.top();
+        nodeStack.pop();
+
+        for (const auto& [neighbor, _] : graph[currentNode]) {
+            if (!visited.count(neighbor)) {
+                visited.insert(neighbor);
+                nodeStack.push(neighbor);
+            }
         }
     }
 }

@@ -13,47 +13,44 @@ int main() {
 
     cout <<endl;
     cout << "======================= LOOPS DETECTION ===========================" << endl;
-    data.LoadGraphFromCSV("../src/data/USA-roads.csv");
+    data.LoadGraphFromCSV("../USA-roads.csv");
 
-    // cout << endl;
-    // cout << "======================= CONNECTIVITY CHECK ========================" << endl;
-    // data.Connectivity();
-
+   data.Connectivity();
 
     /////////////// Quickest Path /////////////////
-    // Graph graph;
-    // ifstream file("../USA-roads.csv");
-    // string line;
-    //
-    // if (!file.is_open()) {
-    //     cout << "Failed to open the file." << endl;
-    //     return 1;
-    // }
-    //
-    // while (getline(file, line)) {
-    //     istringstream iss(line);
-    //     string landmarkA, landmarkB, timeStr;
-    //     int time;
-    //
-    //     if (!getline(iss, landmarkA, ',') ||
-    //         !getline(iss, landmarkB, ',') ||
-    //         !getline(iss, timeStr, ',')) {
-    //         cout << "Error parsing line: " << line << endl;
-    //         continue;
-    //         }
-    //
-    //     try {
-    //         time = stoi(timeStr);
-    //     } catch (const invalid_argument& e) {
-    //         cout << "Invalid time value: " << timeStr << " in line: " << line << endl;
-    //         continue;
-    //     }
-    //
-    //     graph.addEdge(landmarkA, landmarkB, time);
-    // }
-    //
-    // RestApi api(graph);
-    // api.run();
+    Graph graph;
+    ifstream file("../USA-roads.csv");
+    string line;
+
+    if (!file.is_open()) {
+        cout << "Failed to open the file." << endl;
+        return 1;
+    }
+
+    while (getline(file, line)) {
+        istringstream iss(line);
+        string landmarkA, landmarkB, timeStr;
+        int time;
+
+        if (!getline(iss, landmarkA, ',') ||
+            !getline(iss, landmarkB, ',') ||
+            !getline(iss, timeStr, ',')) {
+            cout << "Error parsing line: " << line << endl;
+            continue;
+            }
+
+        try {
+            time = stoi(timeStr);
+        } catch (const invalid_argument& e) {
+            cout << "Invalid time value: " << timeStr << " in line: " << line << endl;
+            continue;
+        }
+
+        graph.addEdge(landmarkA, landmarkB, time);
+    }
+
+    RestApi api(graph);
+    api.run();
 
     return 0;
 }
