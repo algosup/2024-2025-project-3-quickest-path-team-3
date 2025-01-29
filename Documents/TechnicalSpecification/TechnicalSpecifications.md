@@ -32,6 +32,12 @@
           - [Error 500: Internal Server Error](#error-500-internal-server-error)
           - [Error 503: Service Unavailable](#error-503-service-unavailable)
           - [Error 504: Gateway Timeout](#error-504-gateway-timeout)
+    - [Algorithm](#algorithm)
+      - [Algorithm Pseudocode](#algorithm-pseudocode)
+        - [Terms Definition](#terms-definition)
+        - [Explanation](#explanation)
+      - [Complexity](#complexity)
+    - [](#)
 
 </details>
 
@@ -383,3 +389,72 @@ If the API takes too long to process the request, it should return a 504 Gateway
   <message>Gateway Timeout</message>
 </error>
 ```
+
+### Algorithm
+
+The algorithm for computing the quickest path between two landmarks must be both efficient and optimized for performance. It should process the entire dataset within one second on a standard laptop.
+
+For this project, we have chosen Dijkstra’s algorithm, a well-established method for finding the shortest path in a graph. While A\* (A-star) offers better efficiency by using heuristics to guide the search, we opted for Dijkstra’s algorithm due to its simplicity and ease of implementation. Given our performance requirements, Dijkstra’s approach is expected to be sufficient.
+
+#### Algorithm Pseudocode
+
+Below is the pseudocode for **Dijkstra’s algorithm**, optimized with a priority queue for efficiency:
+
+```plaintext
+function Dijkstra(Graph, source):
+    create priority queue Q
+    dist[source] = 0
+    prev[source] = NULL
+
+    for each vertex v in Graph:
+        if v ≠ source:
+            dist[v] = INFINITY
+            prev[v] = NULL
+        add v to Q with priority dist[v]
+
+    while Q is not empty:
+        u = extract vertex with min dist[u] from Q
+
+        for each neighbor v of u:
+            alt = dist[u] + weight(u, v)
+            if alt < dist[v]:
+                dist[v] = alt
+                prev[v] = u
+                update priority of v in Q to dist[v]
+
+    return dist, prev
+```
+
+##### Terms Definition
+
+| Term                    | Definition                                                                                            |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Graph**               | A collection of vertices (nodes) connected by edges. Can be directed or undirected.                   |
+| **Vertex (Node)**       | A fundamental unit of the graph representing a point.                                                 |
+| **Edge**                | A connection between two vertices, possibly weighted to indicate cost/distance.                       |
+| **Weight**              | A numerical value assigned to an edge, representing the cost of traversal.                            |
+| **Source**              | The starting vertex from which shortest paths are calculated.                                         |
+| **Distance (dist)**     | An array that stores the shortest known distance from the source to each vertex.                      |
+| **Predecessor (prev)**  | An array that tracks the previous vertex in the shortest path for reconstruction.                     |
+| **Priority Queue (Q)**  | A data structure that efficiently retrieves the vertex with the smallest known distance.              |
+| **Relaxation**          | The process of updating the shortest known distance to a vertex if a shorter path is found.           |
+| **Extract-Min**         | The operation that removes and returns the vertex with the smallest distance from the priority queue. |
+| **Infinity (INFINITY)** | A placeholder for an initially unreachable distance before paths are computed.                        |
+
+##### Explanation
+
+1. **Initialize distances and a priority queue** – Set the source's distance to 0 and all others to infinity.
+2. **Process vertices in increasing order of distance** – Extract the vertex with the minimum distance from the queue.
+3. **Relax edges** – If a shorter path to a neighbor is found, update its distance and predecessor.
+4. **Update the priority queue** – Adjust the priority of vertices in the queue when their distances change.
+5. **Continue until all vertices are processed.**
+6. **Return shortest distances (`dist`) and predecessor (`prev`) arrays** – `dist[v]` gives the shortest distance to `v`, while `prev[v]` allows path reconstruction.
+
+#### Complexity
+
+- **Without a priority queue:** \( O(V^2) \)
+- **With a min-heap priority queue (e.g., using a binary heap):** \( O(E + V \log V) \), where **V** is the number of vertices and **E** is the number of edges.
+
+This ensures the algorithm is efficient enough for our use case.
+
+###
