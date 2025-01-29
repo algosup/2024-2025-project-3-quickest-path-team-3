@@ -12,7 +12,7 @@ using namespace std;
 class DataIntegrity {
 public:
     bool ValidateGraphIntegrity();
-    bool detectCycleLoop(int node, unordered_set<int> &visited, unordered_set<int> &stack, vector<int> &path);
+    bool detectCycleLoop(int startNode, unordered_set<int>& visited);
     bool detectSelfLoop();
     void LoadGraphFromCSV(const std::string& filename);
     void AddEdge(int u, int v, int w);

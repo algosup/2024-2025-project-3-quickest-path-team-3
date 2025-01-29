@@ -12,14 +12,14 @@ using namespace std;
 unordered_map<int, vector<pair<int, int> > > graph;
 
 
-/////////// Add an edge to the graph u landmark_A, v landmark_B, w weight ///////////
+////////////// Add an edge to the graph u landmark_A, v landmark_B, w weight /////////////
 void DataIntegrity::AddEdge(int u, int v, int w){
     graph[u].emplace_back(v, w);
     graph[v].emplace_back(u, w);
 }
 
 
-////////////// Load the graph from the CSV file //////////////
+////////////////// Load the graph from the CSV file //////////////////
 void DataIntegrity::LoadGraphFromCSV(const std::string& filename){
   ifstream file(filename); // Open the file
   if(!file.is_open()){ // Check if the file is open
@@ -45,7 +45,7 @@ void DataIntegrity::LoadGraphFromCSV(const std::string& filename){
 }
 
 
-/////////////// Display the graph /////////////////
+/////////////////// Display the graph ////////////////////
 void DataIntegrity::display() const {
         for (const auto& [node, neighbors] : graph) { // Iterate through all nodes in the graph
             cout << "Landmark " << node << " connects to:" << endl;
@@ -85,50 +85,74 @@ bool DataIntegrity::detectSelfLoop(){
 };
 
 
-///////// Check if there is a cycle loop in the graph by iterating through all neighbors of the node ///////////
-bool DataIntegrity::detectCycleLoop(int node, unordered_set<int>& visited, unordered_set<int>& stack, vector<int>& path){
-	visited.insert(node);
-    stack.insert(node);
-    path.emplace_back(node);
+//////////// Check if there is a cycle loop in the graph by iterating through all neighbors of the node //////////////
+bool DataIntegrity::detectCycleLoop(int startNode, unordered_set<int>& visited) {
+    stack<pair<int, size_t>> nodeStack;  // Pair of (node, neighbor_index)
+    vector<int> currentPath;
+    unordered_map<int, bool> inPath;
 
-    bool cycleDetected = false;
+    // Initialize with start node
+    nodeStack.push({startNode, 0});
+    currentPath.push_back(startNode);
+    inPath[startNode] = true;
+    visited.insert(startNode);
 
+    while (!nodeStack.empty()) {
+        int currentNode = nodeStack.top().first;
+        size_t& index = nodeStack.top().second; //
 
-    for (const auto& [neighbor, _] : graph[node]) { // Iterate through all neighbors of the node
-      	/* If the neighbor is in the stack, then there is a cycle */
-        if (stack.count(neighbor)) {
-            if(path.size() > 2 && path.front() != neighbor){
-                if (path.size() > 1 && path[path.size() - 2] == neighbor) {
-                    continue;
-                }
-                cout << "\nPath Leader : ";
-                for (const int n : path) {
+        // If we've processed all neighbors of current node
+        if (index >= graph[currentNode].size()) {
+            nodeStack.pop();
+            if (!currentPath.empty()) {
+                currentPath.pop_back();
+                inPath[currentNode] = false;
+            }
+            continue;
+        }
+
+        // Get next neighbor to process
+        int neighbor = graph[currentNode][index].first;  // Using .first since your graph stores pairs of (neighbor, weight)
+        index++;  // Move to next neighbor for future iterations
+
+        // If neighbor is in current path, we found a cycle
+        if (inPath[neighbor]) {
+            // Only report cycles of length >= 3
+            auto it = find(currentPath.begin(), currentPath.end(), neighbor);
+            if (distance(it, currentPath.end()) >= 3) {
+                cout << "\nPath Leader: ";
+                for (const int n : currentPath) {
                     cout << n << " -> ";
                 }
                 cout << neighbor << endl;
-                cout << "CycleLoop Detected: {";
-                for(auto it = find(path.begin(), path.end(), neighbor);it != path.end(); ++it){
-                  cout << *it << " -> ";
-                }
 
-                cout << neighbor << "}" << endl; // Cycle detected
-                cycleDetected = true;
+                cout << "CycleLoop Detected: {";
+                for (; it != currentPath.end(); ++it) {
+                    cout << *it << " -> ";
+                }
+                cout << neighbor << "}" << endl;
+                return true;
             }
+            continue;
         }
-        else if (!visited.count(neighbor)) { // If the neighbor has not been visited, then recursively check if there is a cycle
-            if (detectCycleLoop(neighbor, visited, stack, path)) {
-                cycleDetected = true;
-            }
+
+        // Skip if already visited (but allow revisiting if it would create a cycle)
+        if (visited.count(neighbor) && !inPath[neighbor]) {
+            continue;
         }
+
+        // Add neighbor to path and stack
+        nodeStack.push({neighbor, 0});
+        currentPath.push_back(neighbor);
+        inPath[neighbor] = true;
+        visited.insert(neighbor);
     }
 
-    stack.erase(node); // Remove the node from the stack
-    path.pop_back(); // Remove the node from the path
-    return cycleDetected; // No cycle detected
-};
+    return false;
+}
 
 
-///////////// Check the integrity of the graph by checking if there is any self-loop and cycle loop //////////
+/////////////// Check the integrity of the graph by checking if there is any self-loop and cycle loop ///////////////
 bool DataIntegrity::ValidateGraphIntegrity() {
     unordered_set<int> visited, stack;
     vector<int> path;
@@ -142,14 +166,14 @@ bool DataIntegrity::ValidateGraphIntegrity() {
 
     /* Check for cyclesLoops */
     for (auto& [node, _] : graph) { // Iterate through all nodes in the graph
-        if (!visited.count(node) && detectCycleLoop(node, visited, stack, path)) {
-            cout << "\nThe graph is not perfect" << endl;
+        if (!visited.count(node) && detectCycleLoop(node, visited)) {
+            cout << "\nThe graph is not free of loops" << endl;
             return false;
         }
     }
 
     /* If no self-loops or cyclesLoops are found */
-    cout << "\nThe graph is perfect" << endl;
+    cout << "\nThe graph is free of loops" << endl;
     return cycleDetected;
 }
 
