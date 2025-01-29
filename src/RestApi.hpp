@@ -1,8 +1,8 @@
 #ifndef RESTAPI_H
 #define RESTAPI_H
 
-#include "Graph.h"
-#include "httplib.h"
+#include "Graph.hpp"
+#include "httplib.hpp"
 
 class RestApi {
 public:
