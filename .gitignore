@@ -25,6 +25,7 @@
 *.la
 *.a
 *.lib
+*.csv
 
 # Executables
 *.exe
