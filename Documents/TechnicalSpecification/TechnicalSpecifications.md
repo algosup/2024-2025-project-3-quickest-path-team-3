@@ -60,12 +60,12 @@ The system must expose a REST API that accepts HTTP GET requests with the follow
 
 The API must return the quickest path between the two landmarks in the specified format. If the input is invalid (e.g., landmarks not found), the API should return an appropriate error message that will be explained later in this document.
 
-However, if both the source and destination are valid landmarks, the API should return the quickest path between them with the following information:
+If both the source and destination are valid landmarks, the API should return the quickest path between them, including the following details:
 
 - `time`: The time taken to travel between the two landmarks
 - `path`: The sequence of landmarks to visit to reach the destination
 
-Here an example of a GET request to the API:
+Here is an example of a GET request to the API:
 
 > [!WARNING]  
 > Data is not real and is used for illustrative purposes only.
@@ -85,9 +85,9 @@ And the expected response in JSON format:
 
 The system must be able to handle invalid inputs gracefully, returning appropriate error messages in the specified format.
 
-The API must be well-documented, with clear examples of how to use it and what to expect in the responses. The documentation must be available in Markdown format and hosted on GitHub for easy access.
+The API must have well-structured documentation with clear examples of its usage and expected responses. The documentation should be in Markdown format and hosted on GitHub for easy access.
 
-The system must be thoroughly tested to ensure that it meets the performance requirements and delivers accurate results. Unit tests must be written to cover all possible scenarios and edge cases.
+he system must undergo thorough testing to ensure it meets performance requirements and delivers accurate results. Unit tests must cover all possible scenarios and edge cases.
 
 ### Data Source
 
@@ -109,18 +109,18 @@ As we need to prioritize speed over precision, we are willing to accept a small 
 
 Before processing the dataset, the system must perform data integrity checks to ensure that the data is valid and consistent, here are the checks that must be performed:
 
-- Verify tif the graph might be a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Directed Acyclic Graph) free of cycles. In other words, you cannot traverse a sequence of directed edges and return to the same node, following the edge directions.
-  Here an picture showing the difference between a DCG and a DAG:
+- Verify if the graph might be a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Directed Acyclic Graph) free of cycles. In other words, you cannot traverse a sequence of directed edges and return to the same node, following the edge directions.
+  Here is a picture showing the difference between a DCG and a DAG:
 
   ![DCG vs DAG](./Images/DCG_DAG.jpg)
 
   As you might see, the DCG has a cycle, 1 -> 2 -> 3 -> 4-> 1, while the DAG does not have any cycle as the nodes 2 and 3 both point to the node 4, but the node 4 does not point to any other node.
 
-- Verify than all the nodes are connected, meaning that you can reach any node from any other node in the graph. We can't simply check if a node is alone or linked to another node, as if we take the extreme case of our .csv, if we have 3 nodes linked together, representing the roads of an island, we can't reach the island from the mainland, and the mainland from the island. Meaning that the graph is not connected.
+- Verify that all the nodes are connected, meaning that you can reach any node from any other node in the graph. We can't simply check if a node is alone or linked to another node, as if we take the extreme case of our `.csv` file, where we have three nodes linked together, representing the roads of an island, we can't reach the island from the mainland, and the mainland from the island. This means that the graph is not connected.
 
 > [!NOTE]
 > We're allowed to perform these checks in a separate step before processing the dataset, as we're not required to check these conditions at each request.
-> We're also allowed to perform these checks in another language than C++, as long as the checks are performed before processing the dataset.
+> We're allowed to perform these checks in a language other than C++, as long as the checks are performed before processing the dataset.
 
 ### Expected Deliverables
 
@@ -138,7 +138,7 @@ The chosen language for this project is C++, as it provides high performance and
 
 Regarding the IDE, we strongly recommend using Visual Studio Code with the C++ extension, as it provides excellent support for C++ development and integrates well with GitHub.
 
-As we need to use only the standard library, no external libraries are allowed in this project. To see the full list of allowed libraries, please refer to the [C++ Standard Library](https://cplusplus.com/reference/) documentation.
+Since we are restricted to using only the standard library, external libraries are not allowed in this project. To see the full list of allowed libraries, please refer to the [C++ Standard Library](https://cplusplus.com/reference/) documentation.
 
 ### File Structure
 
