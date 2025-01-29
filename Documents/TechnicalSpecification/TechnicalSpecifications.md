@@ -27,6 +27,11 @@
       - [Example Request and Response](#example-request-and-response)
         - [Expected Response](#expected-response)
         - [Error Response](#error-response)
+          - [Error 400: Bad Request](#error-400-bad-request)
+          - [Error 404: Not Found](#error-404-not-found)
+          - [Error 500: Internal Server Error](#error-500-internal-server-error)
+          - [Error 503: Service Unavailable](#error-503-service-unavailable)
+          - [Error 504: Gateway Timeout](#error-504-gateway-timeout)
 
 </details>
 
@@ -287,11 +292,94 @@ or in XML format:
 
 ##### Error Response
 
-If the input is invalid (e.g., landmarks not found), the API should return an appropriate error message in JSON format:
+In the case of invalid inputs or internal errors, the API should return an appropriate error response.
+
+###### Error 400: Bad Request
+
+If the input parameters are missing or invalid, the API should return a 400 Bad Request error:
+
+```json
+{
+  "code": 400,
+  "message": "Invalid ID provided"
+}
+```
+
+```xml
+<error>
+  <code>400</code>
+  <message>Invalid ID provided</message>
+</error>
+```
+
+###### Error 404: Not Found
+
+If the landmarks are not found in the dataset, the API should return a 404 Not Found error:
 
 ```json
 {
   "code": 404,
-  "error": "Landmarks not found"
+  "message": "Landmark not found"
 }
+```
+
+```xml
+<error>
+  <code>404</code>
+  <message>Landmark not found</message>
+</error>
+```
+
+###### Error 500: Internal Server Error
+
+If an unexpected error occurs during processing, the API should return a 500 Internal Server Error:
+
+```json
+{
+  "code": 500,
+  "message": "Internal Server Error"
+}
+```
+
+```xml
+<error>
+  <code>500</code>
+  <message>Internal Server Error</message>
+</error>
+```
+
+###### Error 503: Service Unavailable
+
+If the API is unable to process the request due to high load or other issues, it should return a 503 Service Unavailable error:
+
+```json
+{
+  "code": 503,
+  "message": "Service Unavailable"
+}
+```
+
+```xml
+<error>
+  <code>503</code>
+  <message>Service Unavailable</message>
+</error>
+```
+
+###### Error 504: Gateway Timeout
+
+If the API takes too long to process the request, it should return a 504 Gateway Timeout error:
+
+```json
+{
+  "code": 504,
+  "message": "Gateway Timeout"
+}
+```
+
+```xml
+<error>
+  <code>504</code>
+  <message>Gateway Timeout</message>
+</error>
 ```
