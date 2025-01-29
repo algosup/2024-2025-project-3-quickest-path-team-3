@@ -93,7 +93,7 @@ The system must be able to handle invalid inputs gracefully, returning appropria
 
 The API must have well-structured documentation with clear examples of its usage and expected responses. The documentation should be in Markdown format and hosted on GitHub for easy access.
 
-he system must undergo thorough testing to ensure it meets performance requirements and delivers accurate results. Unit tests must cover all possible scenarios and edge cases.
+The system must undergo thorough testing to ensure it meets performance requirements and delivers accurate results. Unit tests must cover all possible scenarios and edge cases.
 
 ### Data Source
 
@@ -198,7 +198,7 @@ Here's a list of the libraries that we recommend using:
 
 As we need to expose a REST API, we need to use an HTTP library to handle HTTP requests and responses. We recommend using the `httplib` library, a C++ header-only library that provides a simple and easy-to-use interface for creating HTTP servers and clients.
 
-You can find the `httplib` library [here](https://github.com/yhirose/cpp-httplib)
+You can find the `httplib` library [here](https://github.com/yhirose/cpp-httplib).
 
 This library is lightweight, efficient, and easy to integrate into the project. It allows us to create a REST API quickly and handle HTTP requests and responses with ease.
 
