@@ -13,7 +13,7 @@ void RestApi::run() {
     app.Get("/quickestpath", [this](const httplib::Request& req, httplib::Response& res) {
         auto source = req.get_param_value("source");
         auto destination = req.get_param_value("destination");
-        auto format = req.get_param_value("format"); // Optional format parameter
+        auto format = req.get_param_value("format");
 
         if (source.empty() || destination.empty()) {
             res.status = 400;
@@ -32,20 +32,13 @@ void RestApi::run() {
             return;
         }
 
-        // Generate response based on requested format
+        std::ostringstream os;
         if (format == "xml") {
-            std::ostringstream os;
-            os << "<response>";
-            os << "<time>" << time << "</time>";
-            os << "<path>";
-            for (const auto& node : path) {
-                os << "<node>" << node << "</node>";
-            }
-            os << "</path>";
-            os << "</response>";
+            os << "<response><time>" << time << "</time><path>";
+            for (const auto& node : path) os << "<node>" << node << "</node>";
+            os << "</path></response>";
             res.set_content(os.str(), "application/xml");
-        } else { // Default to JSON
-            std::ostringstream os;
+        } else {
             os << "{ \"time\": " << time << ", \"path\": [";
             for (size_t i = 0; i < path.size(); ++i) {
                 os << "\"" << path[i] << "\"";

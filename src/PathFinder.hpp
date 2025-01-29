@@ -1,5 +1,5 @@
-#ifndef PATHFINDER_H
-#define PATHFINDER_H
+#ifndef PATHFINDER_HPP
+#define PATHFINDER_HPP
 
 #include "Graph.hpp"
 #include <vector>
@@ -7,11 +7,11 @@
 
 class PathFinder {
 public:
-    PathFinder(const Graph& graph);
+    explicit PathFinder(const Graph& graph);
     std::pair<int, std::vector<std::string>> findQuickestPath(const std::string& source, const std::string& destination);
 
 private:
     const Graph& graph;
 };
 
-#endif // PATHFINDER_H
+#endif

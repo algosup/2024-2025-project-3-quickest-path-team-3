@@ -3,37 +3,35 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 int main() {
     Graph graph;
-    std::ifstream file("data/USA-roads.csv");
-    std::string line;
+    std::ifstream file("data/USA-roads.csv", std::ios::in | std::ios::binary);
 
-    if (!file.is_open()) {
-        std::cerr << "Failed to open the file." << std::endl;
+    if (!file) {
+        std::cerr << "Failed to open file.\n";
         return 1;
     }
 
+    graph.reserveNodes(24000000);
+
+    std::string line;
     while (std::getline(file, line)) {
-        std::istringstream iss(line);
-        std::string landmarkA, landmarkB, timeStr;
+        std::stringstream ss(line);
+        std::string landmarkA, landmarkB;
         int time;
 
-        if (!(std::getline(iss, landmarkA, ',') && std::getline(iss, landmarkB, ',') && std::getline(iss, timeStr, ','))) {
-            continue;
-        }
-
-        try {
-            time = std::stoi(timeStr);
-        } catch (...) {
-            continue;
-        }
+        std::getline(ss, landmarkA, ',');
+        std::getline(ss, landmarkB, ',');
+        ss >> time;
 
         graph.addEdge(landmarkA, landmarkB, time);
     }
 
+    file.close();
+
     RestApi api(graph);
     api.run();
-
     return 0;
 }
