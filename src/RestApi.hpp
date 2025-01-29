@@ -1,12 +1,12 @@
-#ifndef RESTAPI_H
-#define RESTAPI_H
+#ifndef RESTAPI_HPP
+#define RESTAPI_HPP
 
 #include "Graph.hpp"
 #include "httplib.hpp"
 
 class RestApi {
 public:
-    RestApi(Graph& graph);
+    explicit RestApi(Graph& graph);
     void run();
 
 private:
@@ -14,4 +14,4 @@ private:
     httplib::Server app;
 };
 
-#endif // RESTAPI_H
+#endif
