@@ -37,7 +37,16 @@
         - [Terms Definition](#terms-definition)
         - [Explanation](#explanation)
       - [Complexity](#complexity)
-    - [](#)
+    - [Data Integrity Verification](#data-integrity-verification)
+      - [Functional Requirements](#functional-requirements)
+      - [Solution](#solution)
+        - [Breadth-First Search (BFS)](#breadth-first-search-bfs)
+        - [Depth-First Search (DFS)](#depth-first-search-dfs)
+        - [Performance](#performance)
+          - [Optimization Techniques](#optimization-techniques)
+    - [Testing](#testing)
+      - [Unit Tests](#unit-tests)
+  - [Conclusion](#conclusion)
 
 </details>
 
@@ -49,7 +58,7 @@
 
 This project aims to build a high-performance REST API designed to compute the quickest path between two landmarks in the United States. Developed in C++, the system will process a dataset containing up to 24 million nodes and deliver results within 1 second on an average laptop. The API supports user-selectable response formats (JSON or XML) and is designed to handle invalid inputs gracefully.
 
-This project is really valuable because it will enable users to quickly find the shortest path between two landmarks in the United States. This is particularly useful for tourists, who can use the API to plan their trips more efficiently. The API can also be used by logistics companies to optimize their delivery routes, saving time and money.
+This project is valuable because it will enable users to quickly find the shortest path between two landmarks in the United States. This is particularly useful for tourists, who can use the API to plan their trips more efficiently. The API can also be used by logistics companies to optimize their delivery routes, saving time and money.
 
 ## Technical Requirements
 
@@ -64,7 +73,7 @@ The system must expose a REST API that accepts HTTP GET requests with the follow
 - `format`: The desired response format (JSON or XML)
   - This is an optional parameter, with JSON being the default format if not specified
 
-The API must return the quickest path between the two landmarks in the specified format. If the input is invalid (e.g., landmarks not found), the API should return an appropriate error message that will be explained later in this document.
+The API must return the quickest path between the two landmarks in the specified format. If the input is invalid (e.g., landmarks not found), the API should return an appropriate error message, which will be explained later in this document.
 
 If both the source and destination are valid landmarks, the API should return the quickest path between them, including the following details:
 
@@ -89,7 +98,7 @@ And the expected response in JSON format:
 }
 ```
 
-The system must be able to handle invalid inputs gracefully, returning appropriate error messages in the specified format.
+The system must handle invalid inputs gracefully, returning appropriate error messages in the specified format.
 
 The API must have well-structured documentation with clear examples of its usage and expected responses. The documentation should be in Markdown format and hosted on GitHub for easy access.
 
@@ -109,7 +118,7 @@ Each line is bidirectional, meaning that the time to travel from Landmark A to L
 
 The API must be able to process the entire dataset within 1 second on an average laptop. To achieve this, the system must be optimized for performance, with efficient algorithms and data structures.
 
-As we need to prioritize speed over precision, we are willing to accept a small margin of error in the results, exactly 10%. This means that the time returned by the API must be in the top 10% of the actual shortest path between the two given landmarks.
+As we must prioritize speed over precision, we are willing to accept a small margin of error in the results, exactly 10%. This means that the time returned by the API must be in the top 10% of the actual shortest path between the two given landmarks.
 
 ### Data Integrity Checks
 
@@ -118,9 +127,9 @@ Before processing the dataset, the system must perform data integrity checks to 
 - Verify if the graph might be a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) (Directed Acyclic Graph) free of cycles. In other words, you cannot traverse a sequence of directed edges and return to the same node, following the edge directions.
   Here is a picture showing the difference between a DCG and a DAG:
 
-  ![DCG vs DAG](./Images/DCG_DAG.jpg)
+![DCG vs DAG](./Images/DCG_DAG.jpg)
 
-  As you might see, the DCG has a cycle, 1 -> 2 -> 3 -> 4-> 1, while the DAG does not have any cycle as the nodes 2 and 3 both point to the node 4, but the node 4 does not point to any other node.
+As you might see, the DCG has a cycle, 1 -> 2 -> 3 -> 4-> 1, while the DAG does not have any cycle as the nodes 2 and 3 both point to the node 4, but the node 4 does not point to any other node.
 
 - Verify that all the nodes are connected, meaning that you can reach any node from any other node in the graph. We can't simply check if a node is alone or linked to another node, as if we take the extreme case of our `.csv` file, where we have three nodes linked together, representing the roads of an island, we can't reach the island from the mainland, and the mainland from the island. This means that the graph is not connected.
 
@@ -140,7 +149,7 @@ The project must be delivered as a GitHub repository containing the following co
 
 ## Development Environment
 
-The chosen language for this project is C++, as it provides high performance and efficient memory management. The system must be developed using modern C++ standards to take advantage of the latest features and optimizations.
+The chosen language for this project is C++, as it provides high-performance and efficient memory management. The system must be developed using modern C++ standards to take advantage of the latest features and optimizations.
 
 Regarding the IDE, we strongly recommend using Visual Studio Code with the C++ extension, as it provides excellent support for C++ development and integrates well with GitHub.
 
@@ -283,16 +292,16 @@ If the input is valid, the API should return the quickest path between the two l
 }
 ```
 
-or in XML format:
+Or in XML format:
 
 ```xml
 <quickestpath>
-  <time>120</time>
-  <path>
-    <landmark>1</landmark>
-    <landmark>5</landmark>
-    <landmark>12</landmark>
-  </path>
+ <time>120</time>
+ <path>
+ <landmark>1</landmark>
+ <landmark>5</landmark>
+ <landmark>12</landmark>
+ </path>
 </quickestpath>
 ```
 
@@ -313,8 +322,8 @@ If the input parameters are missing or invalid, the API should return a 400 Bad 
 
 ```xml
 <error>
-  <code>400</code>
-  <message>Invalid ID provided</message>
+ <code>400</code>
+ <message>Invalid ID provided</message>
 </error>
 ```
 
@@ -331,8 +340,8 @@ If the landmarks are not found in the dataset, the API should return a 404 Not F
 
 ```xml
 <error>
-  <code>404</code>
-  <message>Landmark not found</message>
+ <code>404</code>
+ <message>Landmark not found</message>
 </error>
 ```
 
@@ -349,8 +358,8 @@ If an unexpected error occurs during processing, the API should return a 500 Int
 
 ```xml
 <error>
-  <code>500</code>
-  <message>Internal Server Error</message>
+ <code>500</code>
+ <message>Internal Server Error</message>
 </error>
 ```
 
@@ -367,8 +376,8 @@ If the API is unable to process the request due to high load or other issues, it
 
 ```xml
 <error>
-  <code>503</code>
-  <message>Service Unavailable</message>
+ <code>503</code>
+ <message>Service Unavailable</message>
 </error>
 ```
 
@@ -385,8 +394,8 @@ If the API takes too long to process the request, it should return a 504 Gateway
 
 ```xml
 <error>
-  <code>504</code>
-  <message>Gateway Timeout</message>
+ <code>504</code>
+ <message>Gateway Timeout</message>
 </error>
 ```
 
@@ -402,27 +411,27 @@ Below is the pseudocode for **Dijkstra’s algorithm**, optimized with a priorit
 
 ```plaintext
 function Dijkstra(Graph, source):
-    create priority queue Q
-    dist[source] = 0
-    prev[source] = NULL
+ create priority queue Q
+ dist[source] = 0
+ prev[source] = NULL
 
-    for each vertex v in Graph:
-        if v ≠ source:
-            dist[v] = INFINITY
-            prev[v] = NULL
-        add v to Q with priority dist[v]
+ for each vertex v in Graph:
+ if v ≠ source:
+ dist[v] = INFINITY
+ prev[v] = NULL
+ add v to Q with priority dist[v]
 
-    while Q is not empty:
-        u = extract vertex with min dist[u] from Q
+ while Q is not empty:
+ u = extract vertex with min dist[u] from Q
 
-        for each neighbor v of u:
-            alt = dist[u] + weight(u, v)
-            if alt < dist[v]:
-                dist[v] = alt
-                prev[v] = u
-                update priority of v in Q to dist[v]
+ for each neighbor v of u:
+ alt = dist[u] + weight(u, v)
+ if alt < dist[v]:
+ dist[v] = alt
+ prev[v] = u
+ update priority of v in Q to dist[v]
 
-    return dist, prev
+ return dist, prev
 ```
 
 ##### Terms Definition
@@ -457,4 +466,195 @@ function Dijkstra(Graph, source):
 
 This ensures the algorithm is efficient enough for our use case.
 
-###
+### Data Integrity Verification
+
+#### Functional Requirements
+
+The requirements for data integrity verification are as follows:
+
+1. **Check for Cycles:**
+   - Verify that the graph is a Directed Acyclic Graph (DAG) free of cycles.
+   - Ensure that no sequence of directed edges leads back to the same node.
+2. **Check for Connectivity:**
+   - Confirm that all nodes are connected, allowing traversal between any two nodes in the graph.
+   - Detect islands or disconnected components that prevent full graph traversal.
+
+These checks are essential for ensuring the correctness and consistency of the dataset before processing it with the algorithm.
+
+#### Solution
+
+To perform these checks, we recommend using a separate script written in Python, a versatile and efficient language for data processing and graph analysis. Python provides powerful libraries such as NetworkX for graph operations and Pandas for data manipulation, making it ideal for this task.
+
+The script should read the dataset from the `USA-Roads.csv` file and construct a graph representation. It can then apply graph algorithms to verify the absence of cycles and ensure graph connectivity.
+
+##### Breadth-First Search (BFS)
+
+One effective algorithm for checking graph connectivity is Breadth-First Search (BFS). By starting from a node and exploring its neighbors in layers, BFS can detect disconnected components and islands in the graph.
+
+```python
+def bfs(graph, start):
+ visited = set()
+ queue = [start]
+ visited.add(start)
+
+    while queue:
+ node = queue.pop(0)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+ queue.append(neighbor)
+ visited.add(neighbor)
+
+    return visited
+```
+
+By applying BFS to each node in the graph, we can ensure that all nodes are reachable from any starting point, confirming graph connectivity.
+
+##### Depth-First Search (DFS)
+
+Another algorithm that can be used to check for cycles in the graph is Depth-First Search (DFS). By exploring the graph in a depth-first manner and detecting back edges, DFS can identify cycles in the graph.
+
+```python
+def dfs(graph, node, visited, parent):
+ visited.add(node)
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            if dfs(graph, neighbor, visited, node):
+                return True
+        elif neighbor != parent:
+            return True
+
+    return False
+```
+
+##### Performance
+
+Our main goal is to reach any node from any other node in less than a second. This is the reason of ideas regarding the optimization of the algorithm and the data structure used. The performance of the algorithm is crucial for the success of the project, as it directly impacts the user experience and system responsiveness.
+
+###### Optimization Techniques
+
+1. **Priority Queue:** Using a priority queue to efficiently retrieve the vertex with the smallest known distance.
+2. **Adjacency List:** Representing the graph as an adjacency list for fast access to neighbors.
+3. **Early Exit:** Stopping the algorithm when the destination vertex is reached to avoid unnecessary processing.
+4. **Heuristic:** Implementing a heuristic to guide the search in a more informed manner (e.g., A\* algorithm).
+
+By applying these optimization techniques, we can ensure that the algorithm meets the performance requirements and delivers accurate results within the specified time frame.
+
+Here are some detailed explanations for those ideas:
+
+- **Priority Queue:** The priority queue is used to efficiently retrieve the vertex with the smallest known distance. This allows the algorithm to process vertices in order of increasing distance, ensuring that the shortest paths are computed first.
+  You can use a binary heap or a Fibonacci heap to implement the priority queue. As the code below shows, the priority queue is used to store vertices based on their distance from the source node.
+
+```cpp
+ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<std::pair<int, int>>> pq;
+```
+
+- **Adjacency List:** The graph is represented as an adjacency list, which allows for fast access to neighbors. This data structure is efficient for storing sparse graphs and provides quick lookup times for neighboring vertices.
+  The adjacency list is a vector of vectors, where each element in the outer vector represents a vertex and contains a list of its neighbors.
+
+```cpp
+ std::vector<std::vector<std::pair<int, int>>> adjList;
+```
+
+- **Early Exit:** The algorithm stops when the destination vertex is reached to avoid unnecessary processing. This optimization prevents the algorithm from continuing to explore paths after finding the shortest path to the destination.
+  By checking if the current vertex is the destination, the algorithm can exit early and return the shortest path.
+
+```cpp
+ if (u == destination) {
+     break;
+ }
+```
+
+- **Heuristic:** A heuristic can be implemented to guide the search in a more informed manner. For example, the A\* algorithm uses a heuristic function to estimate the cost of reaching the destination from a given vertex.
+  By incorporating a heuristic into the algorithm, we can improve its efficiency and accuracy, leading to faster computation of the shortest path.
+
+```plaintext
+function AStar(Graph, source, destination):
+create priority queue Q
+dist[source] = 0
+prev[source] = NULL
+
+for each vertex v in Graph:
+if v ≠ source:
+dist[v] = INFINITY
+prev[v] = NULL
+add v to Q with priority dist[v] + heuristic(v, destination)
+
+while Q is not empty:
+u = extract vertex with min dist[u] + heuristic(u, destination) from Q
+
+for each neighbor v of u:
+alt = dist[u] + weight(u, v)
+if alt < dist[v]:
+dist[v] = alt
+prev[v] = u
+update priority of v in Q to dist[v] + heuristic(v, destination)
+
+return dist, prev
+```
+
+By implementing these optimization techniques, we can ensure that the algorithm meets the performance requirements and delivers accurate results within the specified time frame.
+
+### Testing
+
+The system must undergo thorough testing to ensure it meets performance requirements and delivers accurate results. Unit tests must cover all possible scenarios and edge cases, including:
+
+- Valid inputs with different source and destination landmarks.
+- Invalid inputs such as missing parameters or non-existent landmarks.
+- Performance testing to verify that the system processes the dataset within one second.
+- Error handling for internal errors, timeouts, and service unavailability.
+
+Unit tests should be written using a testing framework such as `Google Test` or `GitHub Actions`. The tests should be automated and run as part of the continuous integration process to ensure the system remains reliable and robust.
+
+#### Unit Tests
+
+Unit tests are essential for verifying the correctness and reliability of the system. By testing individual components in isolation, we can ensure that each part of the system functions as expected and handles various scenarios correctly.
+
+Here's an example of a unit test for the algorithm:
+
+```cpp
+TEST(DijkstraTest, ShortestPathTest) {
+ Graph graph = createGraph();
+    int source = 1;
+    int destination = 12;
+    std::vector<int> expectedPath = {1, 5, 12};
+    int expectedTime = 120;
+
+ PathFinder pathFinder(graph);
+ PathResult result = pathFinder.findShortestPath(source, destination);
+
+    EXPECT_EQ(result.time, expectedTime);
+    EXPECT_EQ(result.path, expectedPath);
+}
+```
+
+This test verifies that the algorithm correctly computes the shortest path between two landmarks and returns the expected time and path sequence.
+
+By writing comprehensive unit tests and running them regularly, we can ensure that the system meets the specified requirements and delivers accurate results to users.
+
+It is possible to use a smaller dataset for testing purposes, as we must ensure that the system can find the shortest path between two landmarks. However, all the tests regarding performance must be done using the full dataset, as we need to ensure that the system can process the entire dataset within one second.
+
+Here's an example of a unit test for the performance:
+
+```cpp
+TEST(PerformanceTest, FullDatasetTest) {
+ Graph graph = createGraphFromFullDataset();
+    int source = 1;
+    int destination = 12;
+
+ PathFinder pathFinder(graph);
+ PathResult result = pathFinder.findShortestPath(source, destination);
+
+    EXPECT_LE(result.time, 1);
+}
+```
+
+This test verifies that the system can process the entire dataset within one second, meeting the performance requirements.
+
+---
+
+## Conclusion
+
+This technical specification outlines the requirements and development environment for building a high-performance REST API to compute the quickest path between two landmarks in the United States. By following these guidelines and implementing the recommended algorithms and optimizations, the system will provide users with fast and accurate results for trip planning and logistics optimization.
+
+The project team is expected to deliver the source code, time complexity analysis, data verification script, REST API documentation, and unit tests as part of the final deliverables. By adhering to these requirements and best practices, the team will create a reliable and efficient system that meets the needs of users and stakeholders.
