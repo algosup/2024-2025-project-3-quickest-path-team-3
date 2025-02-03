@@ -7,7 +7,7 @@
 
 class PathFinder {
 public:
-    explicit PathFinder(const Graph& graph);
+    PathFinder(const Graph& graph);
     std::pair<int, std::vector<std::string>> findQuickestPath(const std::string& source, const std::string& destination);
 
 private:

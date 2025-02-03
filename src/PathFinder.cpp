@@ -17,7 +17,7 @@ std::pair<int, std::vector<std::string>> PathFinder::findQuickestPath(const std:
     int n = adjList.size();
     std::vector<int> dist(n, std::numeric_limits<int>::max());
     std::vector<int> prev(n, -1);
-    
+
     using PQ = std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>>;
     PQ pq;
 
@@ -50,6 +50,6 @@ std::pair<int, std::vector<std::string>> PathFinder::findQuickestPath(const std:
         path.push_back(indexToNode[at]);
     }
     std::reverse(path.begin(), path.end());
-    
+
     return { dist[dest], path };
 }

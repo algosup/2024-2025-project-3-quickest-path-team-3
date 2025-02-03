@@ -1,5 +1,7 @@
 #include "Graph.hpp"
 
+
+
 void Graph::reserveNodes(size_t numNodes) {
     nodeIndex.reserve(numNodes);
     indexToNode.reserve(numNodes);
@@ -35,4 +37,38 @@ const std::vector<std::string>& Graph::getIndexToNode() const {
 
 const std::vector<std::vector<std::pair<int, int>>>& Graph::getAdjList() const {
     return adjList;
+}
+
+void Graph::contractNodes(){
+    // Example node ordering based on node degree
+    std::vector<int> order(indexToNode.size());
+    std::iota(order.begin(), order.end(), 0);
+    std::sort(order.begin(), order.end(), [this](int a, int b) {
+        return adjList[a].size() < adjList[b].size();
+        });
+
+    contractedAdjList = adjList;
+
+    for (int node : order) {
+        // Contract the node
+        for (const auto& [neighbor1, weight1] : adjList[node]) {
+            for (const auto& [neighbor2, weight2] : adjList[node]) {
+                if (neighbor1 != neighbor2) {
+                    int shortcutWeight = weight1 + weight2;
+                    addShortcut(neighbor1, neighbor2, shortcutWeight);
+                }
+            }
+        }
+        // Remove the node from the graph
+        contractedAdjList[node].clear();
+    }
+}
+
+void Graph::addShortcut(int u, int v, int weight) {
+    contractedAdjList[u].emplace_back(v, weight);
+    contractedAdjList[v].emplace_back(u, weight);
+}
+
+const std::vector<std::vector<std::pair<int, int>>>& Graph::getContractedAdjList() const {
+    return contractedAdjList;
 }
