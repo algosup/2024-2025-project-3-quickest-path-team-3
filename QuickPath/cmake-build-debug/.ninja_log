@@ -1,10 +1,10 @@
 # ninja log v6
-4	2890	1737937882203164977	CMakeFiles/QuickPath.dir/src/RestApi.cpp.o	863481c860bbbe7a
-3	724	1737937882202816690	CMakeFiles/QuickPath.dir/src/Graph.cpp.o	a117b3c46c5259bf
-4	673	1737937882203056520	CMakeFiles/QuickPath.dir/src/PathFinder.cpp.o	77a62ec1ac1def0
+5	5143	1738791599034732214	CMakeFiles/QuickPath.dir/src/RestApi.cpp.o	df54663b20a38017
+6	715	1738755195588827662	CMakeFiles/QuickPath.dir/src/Graph.cpp.o	ef18d7fe0a1b8703
+5	1013	1738792007375122050	CMakeFiles/QuickPath.dir/src/PathFinder.cpp.o	734254a9908a59d0
 2	630	1737544698052649029	CMakeFiles/QuickPath.dir/DataIntegrityVerification/Data_Verification/DataIntegrity.cpp.o	ca69785f97a3e72a
-4	2104	1738159521290652474	CMakeFiles/QuickPath.dir/main.cpp.o	34d535c5a6a6d2d2
+4	4284	1738786096990046959	CMakeFiles/QuickPath.dir/main.cpp.o	1233272b201f7bbe
 2	627	1737543800126998221	CMakeFiles/QuickPath.dir/Quickest_Path/Data_Verification/DataIntegrity.cpp.o	97f4cd07dc575fa8
-691	785	1738160208589171937	QuickPath	9b5df82cfc18fc94
-3	63	1738162007293974867	build.ninja	b99655d1fef69b43
-5	691	1738160207903724238	CMakeFiles/QuickPath.dir/DataIntegrityVerification/DataIntegrity.cpp.o	4b71415216753c1b
+1013	1117	1738792008383443422	QuickPath	3df43fa3439e640c
+2	48	1738577495615296255	build.ninja	b99655d1fef69b43
+12	1083	1738570794444096296	CMakeFiles/QuickPath.dir/DataIntegrityVerification/DataIntegrity.cpp.o	95c20c37ae4e9cfe
