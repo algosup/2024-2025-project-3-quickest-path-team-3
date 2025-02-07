@@ -25,11 +25,11 @@
 *.la
 *.a
 *.lib
+*.csv
 
 # Executables
 *.exe
 *.out
 *.app
 
-./DS_Store
-.codegpt
+.DS_Store
