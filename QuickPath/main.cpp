@@ -8,14 +8,14 @@
 
 int main() {
 
-    ///////////// Check the integrity of the graph by checking if there is any self-loop and cycle loop //////////
-   //  DataIntegrity data;
-   //
-   //  cout <<endl;
-   //  cout << "======================= LOOPS DETECTION ===========================" << endl;
-   //  data.LoadGraphFromCSV("../USA-roads.csv");
-   //
-   // data.Connectivity();
+    /////////// Check the integrity of the graph by checking if there is any self-loop and cycle loop //////////
+     DataIntegrity data;
+
+     cout <<endl;
+     cout << "======================= LOOPS DETECTION ===========================" << endl;
+     data.LoadGraphFromCSV("../USA-roads.csv");
+
+    data.Connectivity();
 
     /////////////// Quickest Path /////////////////
     Graph graph;
@@ -27,8 +27,6 @@ int main() {
         std::cerr << "Failed to open file.\n";
         return 1;
     }
-
-    //graph.reserveNodes(24000000);
 
     std::string line;
     while (std::getline(file, line)) {

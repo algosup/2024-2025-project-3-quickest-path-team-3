@@ -88,25 +88,25 @@ bool DataIntegrity::detectSelfLoop(){
 //////////// Check if there is a cycle loop in the graph by iterating through all neighbors of the node //////////////
 bool DataIntegrity::detectCycleLoop(int startNode, unordered_set<int>& visited) {
     stack<pair<int, size_t>> nodeStack;  // Pair of (node, neighbor_index)
-    vector<int> currentPath;
-    unordered_map<int, bool> inPath;
+    vector<int> currentPath;  // Vector to keep track of current path
+    unordered_map<int, bool> inPath; // Map to keep track of nodes in current path
 
     // Initialize with start node
-    nodeStack.push({startNode, 0});
-    currentPath.push_back(startNode);
-    inPath[startNode] = true;
-    visited.insert(startNode);
+    nodeStack.push({startNode, 0}); // Push the start node to the stack
+    currentPath.push_back(startNode); // Add the start node to the current path
+    inPath[startNode] = true; // Mark the start node as in path
+    visited.insert(startNode); // Mark the start node as visited
 
     while (!nodeStack.empty()) {
-        int currentNode = nodeStack.top().first;
-        size_t& index = nodeStack.top().second; //
+        int currentNode = nodeStack.top().first; // Get the current node from the stack
+        size_t& index = nodeStack.top().second; // Reference to index to update it in future iterations
 
         // If we've processed all neighbors of current node
         if (index >= graph[currentNode].size()) {
-            nodeStack.pop();
+            nodeStack.pop(); // Pop the current node from the stack
             if (!currentPath.empty()) {
-                currentPath.pop_back();
-                inPath[currentNode] = false;
+                currentPath.pop_back(); // Remove the current node from the path
+                inPath[currentNode] = false; // Mark the current node as not in path
             }
             continue;
         }
@@ -118,7 +118,7 @@ bool DataIntegrity::detectCycleLoop(int startNode, unordered_set<int>& visited) 
         // If neighbor is in current path, we found a cycle
         if (inPath[neighbor]) {
             // Only report cycles of length >= 3
-            auto it = find(currentPath.begin(), currentPath.end(), neighbor);
+            auto it = find(currentPath.begin(), currentPath.end(), neighbor); // Find the neighbor in the current path
             if (distance(it, currentPath.end()) >= 3) {
                 cout << "\nPath Leader: ";
                 for (const int n : currentPath) {
@@ -143,14 +143,13 @@ bool DataIntegrity::detectCycleLoop(int startNode, unordered_set<int>& visited) 
 
         // Add neighbor to path and stack
         nodeStack.push({neighbor, 0});
-        currentPath.push_back(neighbor);
-        inPath[neighbor] = true;
-        visited.insert(neighbor);
+        currentPath.push_back(neighbor); // Add the neighbor to the current path
+        inPath[neighbor] = true; // Mark the neighbor as in path
+        visited.insert(neighbor); // Mark the neighbor as visited
     }
 
     return false;
 }
-
 
 /////////////// Check the integrity of the graph by checking if there is any self-loop and cycle loop ///////////////
 bool DataIntegrity::ValidateGraphIntegrity() {
@@ -197,8 +196,8 @@ bool DataIntegrity::Connectivity() {
 ////////////// Depth First Search to check the connectivity of the graph //////////////
 void DataIntegrity::DFSConnectivity(int node, unordered_set<int>& visited) {
     visited.insert(node); // mark the node as visited
-    stack<int> nodeStack;
-    nodeStack.push(node);
+    stack<int> nodeStack; // Create a stack to store nodes
+    nodeStack.push(node); // Push the node to the stack
 
     while (!nodeStack.empty()) {
         int currentNode = nodeStack.top();
