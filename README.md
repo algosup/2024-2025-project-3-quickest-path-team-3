@@ -34,7 +34,7 @@ Extract it and put the `.csv` file in the `QuickPath/` directory.
 Then, you open a terminal and navigate to the `QuickPath/` directory.
 
 ```bash
-mdkir -p build && cd build
+mkdir -p build && cd build
 cmake ..
 make
 ./QuickPath
