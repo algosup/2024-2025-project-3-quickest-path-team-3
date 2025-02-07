@@ -1,30 +1,19 @@
 # Weekly Report
 
-**Week:** [Week Number]
-**Date:** [Start Date] - [End Date]
+**Week:** **4**
+**Date:** 24/01 - 31/01
 
 ## Summary
 
-Provide a brief summary of the activities and progress made during the week.
+The team has made progress on the pathfinding algorithm and  data validation was implemented.
 
 ## Accomplishments
 
-- [Accomplishment 1]
-- [Accomplishment 2]
-- [Accomplishment 3]
-
-## Challenges
-
-- [Challenge 1]
-- [Challenge 2]
-- [Challenge 3]
+- Data Validation
+- Bidirectional Dijkstra's Algorithm
 
 ## Next Steps
 
-- [Next Step 1]
-- [Next Step 2]
-- [Next Step 3]
+- Finish User Manual
 
-## Notes
 
-Include any additional notes or comments here.

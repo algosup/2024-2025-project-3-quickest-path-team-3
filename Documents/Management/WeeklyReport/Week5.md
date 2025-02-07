@@ -1,30 +1,14 @@
 # Weekly Report
 
-**Week:** [Week Number]
-**Date:** [Start Date] - [End Date]
+**Week:** **5**
+**Date:** 31/01 - 07/02
 
 ## Summary
 
-Provide a brief summary of the activities and progress made during the week.
+The last project week.
 
-## Accomplishments
-
-- [Accomplishment 1]
-- [Accomplishment 2]
-- [Accomplishment 3]
-
-## Challenges
-
-- [Challenge 1]
-- [Challenge 2]
-- [Challenge 3]
 
 ## Next Steps
 
-- [Next Step 1]
-- [Next Step 2]
-- [Next Step 3]
+- Oral presentation
 
-## Notes
-
-Include any additional notes or comments here.
