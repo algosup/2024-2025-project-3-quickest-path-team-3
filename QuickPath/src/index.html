@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quickest Path</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="three-container"></div>
+    <div class="overlay">
+      <h1 class="title">Quickest Path</h1>
+      <h2 class="subtitle">ALGOSUP Team 3</h2>
+      <div class="container">
+        <div class="input-box">
+          <label for="source">Source</label>
+          <input id="source" type="text" placeholder="Enter source" />
+        </div>
+        <div class="arrow"></div>
+        <div class="input-box">
+          <label for="destination">Destination</label>
+          <input id="destination" type="text" placeholder="Enter destination" />
+        </div>
+      </div>
+      <img id="car" src="car-icon.png" alt="Car" />
+      <div class="switch-container">
+        <div id="json" class="switch active">JSON</div>
+        <div id="xml" class="switch">XML</div>
+      </div>
+      <button class="get-path">Get Path</button>
+      <div id="result-container" class="result-box"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="planet.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
