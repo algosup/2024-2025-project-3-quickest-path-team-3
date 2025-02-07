@@ -54,10 +54,10 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vivienbistrel/WebstormProjects/Portfolio/2024-2025-project-3-quickest-path-team-3/QuickPath
+CMAKE_SOURCE_DIR = /Users/lucas_aubard/Documents/2024-2025-project-3-quickest-path-team-3/QuickPath
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vivienbistrel/WebstormProjects/Portfolio/2024-2025-project-3-quickest-path-team-3/QuickPath/build
+CMAKE_BINARY_DIR = /Users/lucas_aubard/Documents/2024-2025-project-3-quickest-path-team-3/QuickPath/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -85,14 +85,14 @@ clean: CMakeFiles/QuickPath.dir/clean
 CMakeFiles/QuickPath.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuickPath.dir/build.make CMakeFiles/QuickPath.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuickPath.dir/build.make CMakeFiles/QuickPath.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vivienbistrel/WebstormProjects/Portfolio/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target QuickPath"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/lucas_aubard/Documents/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target QuickPath"
 .PHONY : CMakeFiles/QuickPath.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/QuickPath.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vivienbistrel/WebstormProjects/Portfolio/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lucas_aubard/Documents/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/QuickPath.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/vivienbistrel/WebstormProjects/Portfolio/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/lucas_aubard/Documents/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles 0
 .PHONY : CMakeFiles/QuickPath.dir/rule
 
 # Convenience name for target.
@@ -102,7 +102,7 @@ QuickPath: CMakeFiles/QuickPath.dir/rule
 # codegen rule for target.
 CMakeFiles/QuickPath.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuickPath.dir/build.make CMakeFiles/QuickPath.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/vivienbistrel/WebstormProjects/Portfolio/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target QuickPath"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/lucas_aubard/Documents/2024-2025-project-3-quickest-path-team-3/QuickPath/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target QuickPath"
 .PHONY : CMakeFiles/QuickPath.dir/codegen
 
 # clean rule for target.
