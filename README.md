@@ -20,4 +20,44 @@ The goal of this project, the third of the scholar year, is to develop a high-pe
 The project is divided into several directories, each containing a specific part of the project:
 
 - `Documents/`: Contains all the documents related to the project (Specifications, Reports, etc.);
-- `Src/`: Contains the source code of the project;
+- `QuickPath/Src/`: Contains the source code of the project;
+
+## How to build and run the project
+
+> [!WARNING]
+> The project needs CMake to be built. If you don't have it installed, you can download it [here](https://cmake.org/download/).
+
+First, clone the repository by downloading the ZIP file once you click on the green "Code" button.
+
+Extract it and put the `.csv` file in the `QuickPath/` directory.
+
+Then, you open a terminal and navigate to the `QuickPath/` directory.
+
+```bash
+mdkir -p build && cd build
+cmake ..
+make
+./QuickPath
+```
+
+The server will start and you can now access the API at `http://localhost:18080/`.
+
+## How to use the API
+
+We advise you to use [Postman](https://www.postman.com/) to test the API.
+
+### Get the quickest path between two landmarks
+
+To get the quickest path between two landmarks, you need to send a `GET` request to the `/path` endpoint with the following parameters:
+
+- `source`: The name of the source landmark;
+- `destination`: The name of the destination landmark.
+- `format`: The format of the response. Can be `json` or `xml`. If not specified, the default format is `json`.
+
+Here is an example of a request:
+
+```postman
+http://localhost:18080/quickestpath?source={source}&destination={destination}(&format={format})
+```
+
+The result will then be displayed in the format you specified.
