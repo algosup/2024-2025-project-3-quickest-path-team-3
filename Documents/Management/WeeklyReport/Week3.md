@@ -1,30 +1,25 @@
 # Weekly Report
 
-**Week:** [Week Number]
-**Date:** [Start Date] - [End Date]
+**Week:** **3**
+**Date:** 17/01 - 24/01
 
 ## Summary
 
-Provide a brief summary of the activities and progress made during the week.
+Working on a pathfinding algorithm.
 
 ## Accomplishments
 
-- [Accomplishment 1]
-- [Accomplishment 2]
-- [Accomplishment 3]
+- Technical specifications to 100%
+
 
 ## Challenges
 
-- [Challenge 1]
-- [Challenge 2]
-- [Challenge 3]
+-  Pathfinding algorithm is not working as expected.
+
 
 ## Next Steps
 
-- [Next Step 1]
-- [Next Step 2]
-- [Next Step 3]
+- Optimize the pathfinding algorithm
+- Finish User Manual
+- Implementing Data Validation
 
-## Notes
-
-Include any additional notes or comments here.

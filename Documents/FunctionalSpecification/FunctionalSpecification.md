@@ -1,12 +1,11 @@
 # Functional specifications
 
-## Table of Contents
+---
 
 <details>
-<summary> Click to expand </summary>
+<summary> Table of Contents </summary>
 
 - [Functional specifications](#functional-specifications)
-  - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
     - [Product Description](#product-description)
     - [Product Functional Capabilities](#product-functional-capabilities)
@@ -47,6 +46,8 @@
   - [Glossary](#glossary)
 
 </details>
+
+---
 
 ## Overview
 
@@ -171,22 +172,21 @@ The system accepts the following inputs via a GET request:
 Users will interact with the API by sending a GET request in the following format:
 
 ```http
-GET /shortest-path?source={sourceID}&destination={destinationID}&format={responseFormat} HTTP/1.1
-Host: localhost:8080
+curl "http://localhost:18080/quickestpath?source={sourceID}&destination={destinationID}(&format=xml)"
 ```
 
 - **Parameters**:
   - `source`: The ID of the source landmark.
   - `destination`: The ID of the destination landmark.
-  - `format`: The response format (XML or JSON). The default is JSON.
+  - `format`: The response format (XML or JSON)
+    - Optional parameter. If not provided, the response will be in JSON format.
 
 #### 2. Example Request
 
 A typical request might look like this:
 
 ```http
-GET /shortest-path?source=1&destination=10&format=xml HTTP/1.1
-Host: localhost:8080
+curl "http://localhost:18080/quickestpath?source=1&destination=10&format=xml"
 ```
 
 #### 3. Input Rules

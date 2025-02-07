@@ -1,30 +1,24 @@
 # Weekly Report
 
-**Week:** [Week Number]
-**Date:** [Start Date] - [End Date]
+**Week:** **2**
+**Date:**  10/01- 17/01
 
 ## Summary
+The team has progress on documentation and started to  implemented code.
 
-Provide a brief summary of the activities and progress made during the week.
+
 
 ## Accomplishments
 
-- [Accomplishment 1]
-- [Accomplishment 2]
-- [Accomplishment 3]
+- Completed the functional specifications to 100%
+- Progress on technical specifications.
+- Program include graph, REST_API, and pathfinding algorithm.
 
-## Challenges
 
-- [Challenge 1]
-- [Challenge 2]
-- [Challenge 3]
 
 ## Next Steps
 
-- [Next Step 1]
-- [Next Step 2]
-- [Next Step 3]
+- Completing the technical specifications to 100%
+- Implementing a optimized pathfinding algorithm
+- Create the User Manual
 
-## Notes
-
-Include any additional notes or comments here.
