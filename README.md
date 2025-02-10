@@ -46,6 +46,10 @@ The server will start and you can now access the API at `http://localhost:18080/
 
 We advise you to use [Postman](https://www.postman.com/) to test the API.
 
+## How to use the frontend
+
+Once the server is running, you can access the frontend by opening the `index.html` file in your browser.
+
 ### Get the quickest path between two landmarks
 
 To get the quickest path between two landmarks, you need to send a `GET` request to the `/path` endpoint with the following parameters:
